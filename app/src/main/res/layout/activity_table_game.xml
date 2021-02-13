@@ -4,54 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".TableGameActivity">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName_nicknamelogin"
+    <Button
+        android:id="@+id/button_useless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nickname"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.362" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword_password_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:text="In attesa..."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_accedi_login"
+    <TextView
+        android:id="@+id/textView_useless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="accedi"
+        android:text="Il numero vincente è"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.417" />
 
-    <Button
-        android:id="@+id/button_openregistrati_login"
+    <TextView
+        android:id="@+id/textView_yourbet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="registrati ora"
-        app:backgroundTint="#03A9F4"
+        android:text="Hai scommesso sul numero:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.781" />
+        app:layout_constraintVertical_bias="0.227" />
 </androidx.constraintlayout.widget.ConstraintLayout>

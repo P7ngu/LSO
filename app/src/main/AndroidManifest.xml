@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".MakeABetActivity"></activity>
+        <activity android:name=".TableGameActivity"></activity>
+        <activity android:name=".MakeABetActivity" />
         <activity android:name=".WaitingActivity" />
         <activity android:name=".LeaderboardActivity" />
         <activity android:name=".RegisterActivity" />
