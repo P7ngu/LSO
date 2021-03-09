@@ -27,25 +27,25 @@ package com.example.myapplication;
 
                 socket= new Socket(inetAddress, port);
                 Log.d("SocketDebug", "1");
-                String message= "Hello";
+                String message = "Hello";
 
-                PrintWriter out = new PrintWriter(new BufferedWriter((new OutputStreamWriter(socket.getOutputStream()))), true);
-                out.println(message);
-                out.close();
-
+                //PrintWriter out = new PrintWriter(new BufferedWriter((new OutputStreamWriter(socket.getOutputStream()))), true);
+                //out.println(message);
                 OutputStream outputStream = socket.getOutputStream();
                 // create a data output stream from the output stream so we can send data through it
-                DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+               DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
                 // write the message we want to send
-               // dataOutputStream.writeBytes("Hello");
-                //dataOutputStream.flush(); // send the message
+                byte[] arr = message.getBytes();
+                //dataOutputStream.writeBytes(arr);
+                dataOutputStream.write(arr);
+               // dataOutputStream.flush(); // send the message
 
 
                 //read the server response message
                 InputStream ois = socket.getInputStream();
                 int message1 = ois.read();
-                Log.d("SocketDebug", message+" 4");
+                Log.d("SocketDebug", message1+" 4");
 
 
 
