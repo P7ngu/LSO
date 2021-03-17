@@ -1,10 +1,12 @@
 package com.example.myapplication;
     import android.util.Log;
 
+    import java.io.BufferedReader;
     import java.io.BufferedWriter;
     import java.io.DataOutputStream;
     import java.io.IOException;
     import java.io.InputStream;
+    import java.io.InputStreamReader;
     import java.io.ObjectInputStream;
     import java.io.OutputStream;
     import java.io.OutputStreamWriter;
@@ -20,42 +22,60 @@ package com.example.myapplication;
     public class Connection {
         public Connection() {
             try {
-                Socket socket = null;
-                //InetAddress inetAddress = InetAddress.getByName("40.68.217.34");
-                InetAddress inetAddress = InetAddress.getByName("192.168.1.129");
-                int port = 18000;
+               // Socket sock = new Socket("127.0.0.1", 10011);
+                Socket sock = new Socket("192.168.1.127", 10011);
+                // reading from keyboard (keyRead object)
+                BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
+                // sending to client (pwrite object)
+                OutputStream ostream = sock.getOutputStream();
+                PrintWriter pwrite = new PrintWriter(ostream, true);
 
-                socket= new Socket(inetAddress, port);
-                Log.d("SocketDebug", "1");
-                String message = "Hello";
+                // receiving from server ( receiveRead  object)
+                InputStream istream = sock.getInputStream();
+                BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
 
-                //PrintWriter out = new PrintWriter(new BufferedWriter((new OutputStreamWriter(socket.getOutputStream()))), true);
-                //out.println(message);
-                OutputStream outputStream = socket.getOutputStream();
-                // create a data output stream from the output stream so we can send data through it
-               DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+                System.out.println("Send a message: type and press Enter key");
 
-                // write the message we want to send
-                byte[] arr = message.getBytes();
-                //dataOutputStream.writeBytes(arr);
-                dataOutputStream.write(arr);
-               // dataOutputStream.flush(); // send the message
-
-
-                //read the server response message
-                InputStream ois = socket.getInputStream();
-                int message1 = ois.read();
-                Log.d("SocketDebug", message1+" 4");
+                String receiveMessage, sendMessage;
+                while(true)
+                {
+                    //sendMessage = keyRead.readLine();  // keyboard reading
+                    //pwrite.println(sendMessage);
+                    pwrite.println("Testtttt\n");// sending to server
+                    pwrite.flush();                    // flush the data
 
 
+                    receiveMessage = receiveRead.readLine();
+                    if((receiveMessage) != "0") //receive from server
+                    {
+                        System.out.println(receiveMessage); // displaying at DOS prompt
+                    }
+                    //removeNonAscii(receiveMessage);
+                    //replaceUnreadable(receiveMessage);
+                    receiveMessage = receiveMessage.substring(0,0);
 
-                System.out.println("Inet address: " + socket.getInetAddress());
-                System.out.println("Port number: " + socket.getLocalPort());
-                socket.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.d("SocketDebug", "errore");
+
+                }
+
+            } catch (UnknownHostException unknownHostException) {
+                unknownHostException.printStackTrace();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
 
+        }
+
+        private static String removeNonAscii(String s){
+            StringBuffer sb = new StringBuffer();
+            for(int i=0; i<s.length(); ++i){
+                if(s.charAt(i) < 128){
+                    sb.append(s.charAt(i));
+                }
+            }
+            return sb.toString();
+        }
+        private static String replaceUnreadable(String s){
+            String clean = s.replaceAll("\\P{Print}", "");
+            return clean;
         }
     }
