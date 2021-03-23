@@ -23,7 +23,7 @@ public class Client {
         }
     }
 
-    public static void inviaRichiestaRegistrazione(String nome, String password) {
+    public static boolean inviaRichiestaRegistrazione(String nome, String password) {
         PrintWriter pwrite = Connection.getPwrite();
         String blankspaces = " ";
         for(int i=nome.length(); i<10; i++){
@@ -32,6 +32,11 @@ public class Client {
         pwrite.println("register  "+nome+blankspaces+password);// sending to server
         Log.d("DEBUGGG", "register  "+nome+blankspaces+password);
         pwrite.flush();                    // flush the data
+        //GetMessage getMessage = new GetMessage();
+        //getMessage.run();
+        //if(getMessage.getMessage().equals("register_success")) return true;
+        //else
+            return false;
     }
 
     public static boolean inviaRichiestaLogin(String nome, String password) {
@@ -45,21 +50,14 @@ public class Client {
         Log.d("DEBUGGG", "login inviato  "+nome+blankspaces+password);
         pwrite.flush();                    // flush the data
 
-        BufferedReader receiveRead = Connection.getReceiveRead();
-        boolean flag=false;
         String message = null;
-        while(message!=null){
-            try {
-                message = receiveRead.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.d("DEBUGGG ricevuto", message);
-           if(message.equals("login_success")) {
-              return true;
-           } else if(message.equals(("login_fail"))) return false;
+        try {
+            message = Connection.receiveMessageFromServer();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return false;
+        Log.d("DEBUGGG", message+"Messaggio ricevuto");
+       return true;
 
     }
 

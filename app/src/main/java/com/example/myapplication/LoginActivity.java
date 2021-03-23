@@ -35,7 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         loginSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Client.inviaRichiestaLogin(nicknameET.getText().toString(), pwET.getText().toString());
+                if(Client.inviaRichiestaLogin(nicknameET.getText().toString(), pwET.getText().toString())) {
+                    startActivity(new Intent(mContext, MakeABetActivity.class));
+                    CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
+                }
             }
         });
     }

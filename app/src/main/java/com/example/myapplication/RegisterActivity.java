@@ -28,7 +28,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(checkCampiRegistrazione(nicknameET.getText().toString(), pw1ET.getText().toString(), pw2ET.getText().toString())){
-                    Client.inviaRichiestaRegistrazione(nicknameET.getText().toString(), pw2ET.getText().toString());
+                    if(Client.inviaRichiestaRegistrazione(nicknameET.getText().toString(), pw2ET.getText().toString())){
+                        //Mostra popup
+                        startActivity(new Intent(mContext, LoginActivity.class));
+                    }
                 }
 
             }

@@ -130,9 +130,7 @@ package com.example.myapplication;
 
                 // receiving from server ( receiveRead  object)
                 istream = sock.getInputStream();
-                receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
-
-                Log.d("TEST", "Send a message: type and press Enter key");
+                receiveRead = new BufferedReader(new InputStreamReader(istream));
 
                 String receiveMessage, sendMessage;
                 String messages;
@@ -146,9 +144,8 @@ package com.example.myapplication;
                     //pwrite.flush();                    // flush the data
 
                     Log.d("TEST", "pre readline");
-                    //messages = receiveRead.readLine();
-
-                    Log.d("TEST", "dopo readline \n");
+                   // messages = receiveRead.readLine();
+                    // Log.d("TEST", "dopo readline \n"+messages);
                     //if (messages != "0") //receive from server
                     {
                         //messages = removeNonAscii(messages);
@@ -209,13 +206,10 @@ package com.example.myapplication;
                 e.printStackTrace();
             }
         }
-        private String receiveMessageFromServer() throws IOException {
+        public static String receiveMessageFromServer() throws IOException {
             String messages = receiveRead.readLine();
             if (messages != "0") //receive from server
             {
-                messages = removeNonAscii(messages);
-                messages = replaceUnreadable(messages);
-                messages = messages.replaceAll("�", "");
                 Log.d("TEST", messages + "\n"); // displaying at DOS prompt
                 final String mx=messages;
                 new Handler(Looper.getMainLooper()).post(new Runnable(){
@@ -226,7 +220,6 @@ package com.example.myapplication;
                 });
                 Log.d("TEST", "fine metodo invocato \n");
             }
-            Client.gesticiOperazione(messages);
-            return null;
+            return messages;
         }
     }
