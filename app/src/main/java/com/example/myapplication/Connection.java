@@ -112,18 +112,13 @@ package com.example.myapplication;
         protected Object doInBackground(Object[] objects) {
             try {
                 Log.d("TEST", "inizio thread");
-                //Socket sock = new Socket("127.0.0.1", 10011);
-                //Socket sock = new Socket("192.168.1.127", 10011);
-
                 //Throws ConnectException if the network is off or the server is unreachable
                 sock = new Socket();
                 //Throws SocketTimeoutException after 1s if server is unreachable
-                sock.connect(new InetSocketAddress("40.68.217.34", 18000), 1000);
+                sock.connect(new InetSocketAddress("13.94.229.98", 18000), 1000);
                 //mMessageListener.onConnectionEstablished();
 
                 Log.d("TEST", "Socket creato");
-                // reading from keyboard (keyRead object)
-                keyRead = new BufferedReader(new InputStreamReader(System.in));
                 // sending to client (pwrite object)
                 ostream = sock.getOutputStream();
                 pwrite = new PrintWriter(ostream, true);
@@ -138,43 +133,35 @@ package com.example.myapplication;
 
                 while (true) {
                     receiveMessage = null;
-                    //sendMessage = keyRead.readLine();  // keyboard reading
-                    //pwrite.println(sendMessage);
                     //pwrite.println("login####nome12345#test26789");// sending to server
-                    //pwrite.flush();                    // flush the data
+                    pwrite.println("wei\n");
+                    pwrite.flush();                    // flush the data
 
                     Log.d("TEST", "pre readline");
-                   // messages = receiveRead.readLine();
-                    // Log.d("TEST", "dopo readline \n"+messages);
-                    //if (messages != "0") //receive from server
+                    messages = receiveRead.readLine();
+                    Log.d("TEST", "dopo readline \n"+messages);
+                    if (messages != "0") //receive from server
                     {
-                        //messages = removeNonAscii(messages);
-                        //messages = replaceUnreadable(messages);
-                        //messages = messages.replaceAll("�", "");
+                        messages = removeNonAscii(messages);
+                        messages = replaceUnreadable(messages);
+                        messages = messages.replaceAll("�", "");
 
-//                        Log.d("TEST", messages + "\n"); // displaying at DOS prompt
-                        //                      //MainActivity.setText_Testing(messages[i+1]);
-                        //                    final String mx=messages;
+                     Log.d("TEST", messages + "\n"); // displaying at DOS prompt
+                        //MainActivity.setText_Testing(messages);
+                                            final String mx=messages;
 
-                        //                  new Handler(Looper.getMainLooper()).post(new Runnable(){
-                        //                    @Override
-                        //                  public void run() {
-                        //                    test.setText(mx.toString());
-                        //              }
-                        //        });
+                                        new Handler(Looper.getMainLooper()).post(new Runnable(){
+                                            @Override
+                                         public void run() {
+                                            test.setText(mx.toString());
+                                      }
+                                });
 
-                        // receiveMessage = receiveMessage.substring(0,0);
-                        //      Log.d("TEST", "fine thread \n");
+                        //receiveMessage = receiveMessage.substring(0,0);
+                              Log.d("TEST", "fine thread \n");
 
-                        //}
-                    }
-                    // } catch (UnknownHostException unknownHostException) {
-                    //   unknownHostException.printStackTrace();
-                    // Log.d("TEST ERROR", "UNKNOWN HOST");
-                    //} catch (IOException ioException) {
-                    //  ioException.printStackTrace();
-                    //Log.d("TEST ERROR", "IO EXCEPTION");
-                    //}
+                        }
+                    else Log.d("TESTT", "MESSAGGIO VUOTO");
                     return null;
                 }
             } catch (IOException e) {
