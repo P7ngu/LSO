@@ -37,6 +37,6 @@ public class MainActivity extends AppCompatActivity {
         testTextView = findViewById(R.id.testing);
         Connection connection = new Connection(testTextView);
         connection.execute();
-        //startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 }

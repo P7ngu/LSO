@@ -104,6 +104,33 @@ package com.example.myapplication;
 
         public Connection(TextView tv) {
             test = tv;
+            Log.d("TEST", "inizio thread");
+            //Throws ConnectException if the network is off or the server is unreachable
+            sock = new Socket();
+            //Throws SocketTimeoutException after 1s if server is unreachable
+            try {
+                sock.connect(new InetSocketAddress("52.233.138.37", 18000), 1000);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //mMessageListener.onConnectionEstablished();
+
+            Log.d("TEST", "Socket creato");
+            // sending to client (pwrite object)
+            try {
+                ostream = sock.getOutputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            pwrite = new PrintWriter(ostream, true);
+
+            // receiving from server ( receiveRead  object)
+            try {
+                istream = sock.getInputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            receiveRead = new BufferedReader(new InputStreamReader(istream));
 
 
         }
@@ -111,21 +138,7 @@ package com.example.myapplication;
         @Override
         protected Object doInBackground(Object[] objects) {
             try {
-                Log.d("TEST", "inizio thread");
-                //Throws ConnectException if the network is off or the server is unreachable
-                sock = new Socket();
-                //Throws SocketTimeoutException after 1s if server is unreachable
-                sock.connect(new InetSocketAddress("13.94.229.98", 18000), 1000);
-                //mMessageListener.onConnectionEstablished();
 
-                Log.d("TEST", "Socket creato");
-                // sending to client (pwrite object)
-                ostream = sock.getOutputStream();
-                pwrite = new PrintWriter(ostream, true);
-
-                // receiving from server ( receiveRead  object)
-                istream = sock.getInputStream();
-                receiveRead = new BufferedReader(new InputStreamReader(istream));
 
                 String receiveMessage, sendMessage;
                 String messages;
@@ -134,8 +147,8 @@ package com.example.myapplication;
                 while (true) {
                     receiveMessage = null;
                     //pwrite.println("login####nome12345#test26789");// sending to server
-                    pwrite.println("wei\n");
-                    pwrite.flush();                    // flush the data
+                    //pwrite.println("wei\n");
+                    //pwrite.flush();                    // flush the data
 
                     Log.d("TEST", "pre readline");
                     messages = receiveRead.readLine();

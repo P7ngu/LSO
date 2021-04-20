@@ -63,7 +63,8 @@ public class Client {
 
     public static void inviaScommessa(String numeroPuntato, String importoScommesso) {
         PrintWriter pwrite = Connection.getPwrite();
-        pwrite.println("puntata   "+numeroPuntato+" "+importoScommesso);// sending to server
+        if (numeroPuntato.length()==1) numeroPuntato.concat(" ");
+        pwrite.println("puntata   "+numeroPuntato+"1234567890"+importoScommesso);// sending to server
         pwrite.flush();                    // flush the data
 
     }
