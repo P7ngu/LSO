@@ -21,6 +21,9 @@ package com.example.myapplication;
     import java.net.*;
     import java.nio.Buffer;
 
+    import static com.example.myapplication.Client.getTimerLeft;
+    import static com.example.myapplication.CurrentUser.setStartTime;
+
 //Open a socket.
 //Open an input stream and output stream to the socket.
 //Read from and write to the stream according to the server's protocol.
@@ -109,7 +112,7 @@ package com.example.myapplication;
             sock = new Socket();
             //Throws SocketTimeoutException after 1s if server is unreachable
             try {
-                sock.connect(new InetSocketAddress("52.233.138.37", 18000), 1000);
+                sock.connect(new InetSocketAddress("20.73.43.117", 18000), 1000);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -135,8 +138,7 @@ package com.example.myapplication;
 
         }
 
-        @Override
-        protected Object doInBackground(Object[] objects) {
+        protected Object doInBackground1(Object[] objects) {
             try {
 
 
@@ -221,5 +223,12 @@ package com.example.myapplication;
                 Log.d("TEST", "fine metodo invocato \n");
             }
             return messages;
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            setStartTime(getTimerLeft());
+            CurrentUser.setTimer(new Timer(CurrentUser.getStartTime()));
+            return null;
         }
     }

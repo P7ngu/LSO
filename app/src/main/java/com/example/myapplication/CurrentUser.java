@@ -3,6 +3,25 @@ package com.example.myapplication;
 import java.util.ArrayList;
 
 public class CurrentUser {
+    private static int startTime;
+    private static Timer timer;
+
+    public static Timer getTimer() {
+        return timer;
+    }
+
+    public static void setTimer(Timer timer) {
+        CurrentUser.timer = timer;
+    }
+
+    public static int getStartTime() {
+        return startTime;
+    }
+
+    public static void setStartTime(int startTime) {
+        CurrentUser.startTime = startTime;
+    }
+
     private static CurrentUser instance;
     private static String username;
     private static String userId;

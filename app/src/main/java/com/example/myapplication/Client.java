@@ -63,9 +63,54 @@ public class Client {
 
     public static void inviaScommessa(String numeroPuntato, String importoScommesso) {
         PrintWriter pwrite = Connection.getPwrite();
-        if (numeroPuntato.length()==1) numeroPuntato.concat(" ");
-        pwrite.println("puntata   "+numeroPuntato+"1234567890"+importoScommesso);// sending to server
+        String numeroDaMandare=null;
+        String nomeUtente=CurrentUser.getUsername();
+        String blankspaces = " ";
+        for(int i=nomeUtente.length(); i<10; i++){
+            blankspaces=blankspaces+" ";
+        }
+        if (numeroPuntato.length()==1) numeroDaMandare = numeroPuntato.concat(" ");
+        else numeroDaMandare=numeroPuntato;
+        Log.d("Debug puntata", numeroDaMandare+nomeUtente);
+        pwrite.println("puntata   "+numeroDaMandare+nomeUtente+blankspaces+importoScommesso);// sending to server
         pwrite.flush();                    // flush the data
+
+    }
+
+    public static int getTimerLeft(){
+        PrintWriter pwrite = Connection.getPwrite();
+        pwrite.println("timeleft");// sending to server
+        pwrite.flush();                    // flush the data
+
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Integer timeLeft = new Integer(message);
+        return timeLeft;
+
+
+    }
+
+    public static int getLatestNumber() {
+        PrintWriter pwrite = Connection.getPwrite();
+        pwrite.println("estrazione");// sending to server
+        pwrite.flush();                    // flush the data
+
+        String message = null;
+        try {
+            Thread.sleep(5000);
+            message = Connection.receiveMessageFromServer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Integer number=0;
+        if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
+                && message!=null && !message.equals("") && !message.equals(" "))
+            number = new Integer(message);
+        return number;
 
     }
 }
