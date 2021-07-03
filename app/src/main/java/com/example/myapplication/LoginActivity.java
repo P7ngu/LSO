@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Client.inviaRichiestaLogin(nicknameET.getText().toString(), pwET.getText().toString())) {
-                    startActivity(new Intent(mContext, MakeABetActivity.class));
+                    startActivity(new Intent(mContext, HomeActivity.class));
                     CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
                 }
             }

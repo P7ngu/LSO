@@ -94,6 +94,24 @@ public class Client {
 
     }
 
+    public static String getUtentiAttivi(){
+        PrintWriter pwrite = Connection.getPwrite();
+        pwrite.println("online");// sending to server
+        pwrite.flush();                    // flush the data
+
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String onlineUsers = new String(message);
+        Log.d("Utenti Online", onlineUsers+" end");
+        return onlineUsers;
+
+
+    }
+
     public static int getLatestNumber() {
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("estrazione");// sending to server
