@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     Spinner importoSpinner, numeroSpinner;
     Button sendBetButton;
     String numeroPuntato, importoScommesso;
+    Context mContext=this;
 
 
         public void onItemSelected(AdapterView<?> parent, View view,
@@ -48,6 +51,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_a_bet);
 
+
             numeroSpinner = (Spinner) findViewById(R.id.numero_spinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                     R.array.numbers_array, android.R.layout.simple_spinner_item);
@@ -69,6 +73,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 Client.inviaScommessa(numeroPuntato, importoScommesso);
+                startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });
 
