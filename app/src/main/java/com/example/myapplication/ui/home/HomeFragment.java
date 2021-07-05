@@ -37,6 +37,16 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        final Button sendBetButton1 = root.findViewById(R.id.button_goToBet2);
+        sendBetButton=sendBetButton1;
+
+        sendBetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, MakeABetActivity.class));
+            }
+        });
         mContext=container.getContext();
 
 

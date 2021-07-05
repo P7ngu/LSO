@@ -21,14 +21,7 @@ public class HomeActivity extends AppCompatActivity {
         Context mContext=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Button sendBetButton = findViewById(R.id.button_goToBet);
 
-        sendBetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, MakeABetActivity.class));
-            }
-        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
