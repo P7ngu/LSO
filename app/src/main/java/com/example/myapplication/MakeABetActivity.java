@@ -73,6 +73,8 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 Client.inviaScommessa(numeroPuntato, importoScommesso);
+                CurrentUser.setNumeroBettato(numeroPuntato);
+                CurrentUser.setImportoScommesso(importoScommesso);
                 startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });

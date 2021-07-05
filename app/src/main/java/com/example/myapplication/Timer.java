@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.ContentUris;
 import android.util.Log;
 
 public class Timer {
@@ -12,7 +13,7 @@ public class Timer {
         while(true){
             try {
                 Thread thread = new Thread();
-                thread.sleep(1000);
+                //thread.sleep(1000);
 
             } catch (Exception e){
 
@@ -31,6 +32,13 @@ public class Timer {
                 //Verifichiamo la puntata
                 int numeroEstratto = Client.getLatestNumber();
                 Log.d("Debug numero estratto", numeroEstratto+"numero<");
+                CurrentUser.setLastNumber(numeroEstratto+"");
+                if(CurrentUser.getNumeroBettato().equals(numeroEstratto+"")){
+                    int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());
+                    int moneyWon = Integer.parseInt(CurrentUser.getImportoScommesso())*30;
+                    CurrentUser.setMoneyCount(prevMoney+moneyWon+"");
+                    //Notifica
+                }
                 //Aggiorniamo e notifichiamo l'utente
             }
 

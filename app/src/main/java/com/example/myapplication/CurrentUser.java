@@ -27,6 +27,24 @@ public class CurrentUser {
     private static String userId;
     private static String moneyCount;
     private static String lastNumber;
+    private static String numeroBettato;
+    private static String importoScommesso;
+
+    public static String getNumeroBettato() {
+        return numeroBettato;
+    }
+
+    public static void setNumeroBettato(String numeroBettato) {
+        CurrentUser.numeroBettato = numeroBettato;
+    }
+
+    public static String getImportoScommesso() {
+        return importoScommesso;
+    }
+
+    public static void setImportoScommesso(String importoScommesso) {
+        CurrentUser.importoScommesso = importoScommesso;
+    }
 
     public static void setInstance(CurrentUser instance) {
         CurrentUser.instance = instance;
