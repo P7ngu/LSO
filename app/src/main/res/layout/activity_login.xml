@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0C0C0C"
     tools:context=".LoginActivity">
 
     <EditText
@@ -13,6 +14,11 @@
         android:ems="10"
         android:hint="Nickname"
         android:inputType="textPersonName"
+        android:shadowColor="#8BC34A"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -27,6 +33,10 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:shadowColor="#8BC34A"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="accedi"
+        app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +59,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="registrati ora"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#FFC107"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.781" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="53dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
