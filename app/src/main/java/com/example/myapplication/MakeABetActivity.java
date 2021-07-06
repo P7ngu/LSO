@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,9 +17,18 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     Button sendBetButton;
     String numeroPuntato, importoScommesso;
     Context mContext=this;
+    static Button latestNumber;
+
+    public static void updateLatestNumber(Integer number) {
+       try {
+           if(latestNumber!=null) latestNumber.setText(number + "");
+       } catch (Exception e){
+        e.printStackTrace();
+       }
+    }
 
 
-        public void onItemSelected(AdapterView<?> parent, View view,
+    public void onItemSelected(AdapterView<?> parent, View view,
                                    int pos, long id) {
             // An item was selected. You can retrieve the selected item using
             // parent.getItemAtPosition(pos)
@@ -28,6 +36,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             Log.d("Debuggg", (String) parent.getItemAtPosition(pos));
             Spinner spin = (Spinner)parent;
             Spinner spin2 = (Spinner)parent;
+
             if(spin.getId() == R.id.importo_spinner)
             {
                importoScommesso=parent.getItemAtPosition(pos)+"";
@@ -78,6 +87,12 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
                 startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });
+
+        int numeroEstratto = Client.getLatestNumber();
+        Log.d("Debug numero estratto", numeroEstratto+"numero<");
+        CurrentUser.setLastNumber(numeroEstratto+"");
+       Button latestNumber=findViewById(R.id.button2_latestnumber);
+        latestNumber.setText(numeroEstratto+"");
 
 
 

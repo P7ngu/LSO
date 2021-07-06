@@ -133,9 +133,34 @@ public class Client {
 
     }
 
-    public static int getLatestNumber() {
+    public static int extractLatestNumber() {
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("estrazione");// sending to server
+        pwrite.flush();                    // flush the data
+
+        String message = null;
+        try {
+            Thread.sleep(5000);
+            message = Connection.receiveMessageFromServer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Integer number=0;
+        if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
+                && message!=null && !message.equals("") && !message.equals(" "))
+            try{
+                number = new Integer(message);
+            } catch (Exception e){
+
+            }
+        MakeABetActivity.updateLatestNumber(number);
+        return number;
+
+    }
+
+    public static int getLatestNumber() {
+        PrintWriter pwrite = Connection.getPwrite();
+        pwrite.println("latestnumber");// sending to server
         pwrite.flush();                    // flush the data
 
         String message = null;

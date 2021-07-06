@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.ContentUris;
 import android.util.Log;
 
 public class Timer {
@@ -30,7 +29,7 @@ public class Timer {
 
                 }
                 //Verifichiamo la puntata
-                int numeroEstratto = Client.getLatestNumber();
+                int numeroEstratto = Client.extractLatestNumber();
                 Log.d("Debug numero estratto", numeroEstratto+"numero<");
                 CurrentUser.setLastNumber(numeroEstratto+"");
                 try {
