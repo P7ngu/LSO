@@ -148,7 +148,11 @@ public class Client {
         Integer number=0;
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
                 && message!=null && !message.equals("") && !message.equals(" "))
-            number = new Integer(message);
+            try{
+                number = new Integer(message);
+            } catch (Exception e){
+
+            }
         return number;
 
     }

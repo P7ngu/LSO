@@ -112,7 +112,7 @@ package com.example.myapplication;
             sock = new Socket();
             //Throws SocketTimeoutException after 1s if server is unreachable
             try {
-                sock.connect(new InetSocketAddress("40.113.148.92", 18000), 1000);
+                sock.connect(new InetSocketAddress("40.118.53.196", 18000), 1000);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -217,7 +217,6 @@ package com.example.myapplication;
                 new Handler(Looper.getMainLooper()).post(new Runnable(){
                     @Override
                     public void run() {
-                        test.setText(mx.toString());
                     }
                 });
                 Log.d("TEST", "fine metodo invocato \n");

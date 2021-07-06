@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.dashboard;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,27 +12,52 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Adaptery;
 import com.example.myapplication.Client;
 import com.example.myapplication.R;
+import com.example.myapplication.Utente;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+    static Context mContext;
+    static RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        Client.getUtentiAttivi();
+
+        mContext = container.getContext();
+        final RecyclerView recyclerView1=root.findViewById(R.id.utentionline_recycler);
+        recyclerView=recyclerView1;
+
+
+
+        String users = Client.getUtentiAttivi();
+        String[] utentiArray = users.split(",,");
+        ArrayList<Utente> userList;
+        userList = new ArrayList<>();
+        for(int i=0; i<utentiArray.length; i=i+2){
+            Utente tempUser = new Utente(utentiArray[i], utentiArray[i+1]); //username, moneycount
+            userList.add(tempUser);
+        }
+
+        PutDataIntoRecyclerView(userList);
         return root;
+    }
+
+    public static void PutDataIntoRecyclerView(List<Utente> userList){
+        Adaptery adaptery = new Adaptery(mContext, userList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerView.setAdapter(adaptery);
+
     }
 }
