@@ -53,11 +53,14 @@ public class Client {
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
+            while(!message.equals("login_success") && !message.equals("login_fail"))
+                message = Connection.receiveMessageFromServer();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Log.d("DEBUGGG", message+"Messaggio ricevuto");
-       return true;
+       if(message.equals("login_success")) return true;
+       else return false;
 
     }
 

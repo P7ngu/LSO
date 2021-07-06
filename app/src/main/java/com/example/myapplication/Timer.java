@@ -13,7 +13,7 @@ public class Timer {
         while(true){
             try {
                 Thread thread = new Thread();
-                //thread.sleep(1000);
+                thread.sleep(1000);
 
             } catch (Exception e){
 
@@ -33,11 +33,15 @@ public class Timer {
                 int numeroEstratto = Client.getLatestNumber();
                 Log.d("Debug numero estratto", numeroEstratto+"numero<");
                 CurrentUser.setLastNumber(numeroEstratto+"");
-                if(CurrentUser.getNumeroBettato().equals(numeroEstratto+"")){
-                    int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());
-                    int moneyWon = Integer.parseInt(CurrentUser.getImportoScommesso())*30;
-                    CurrentUser.setMoneyCount(prevMoney+moneyWon+"");
-                    //Notifica
+                try {
+                    if (CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
+                        int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());
+                        int moneyWon = Integer.parseInt(CurrentUser.getImportoScommesso()) * 30;
+                        CurrentUser.setMoneyCount(prevMoney + moneyWon + "");
+                        //Notifica
+                    }
+                }catch (Exception e){
+
                 }
                 //Aggiorniamo e notifichiamo l'utente
             }

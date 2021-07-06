@@ -112,7 +112,7 @@ package com.example.myapplication;
             sock = new Socket();
             //Throws SocketTimeoutException after 1s if server is unreachable
             try {
-                sock.connect(new InetSocketAddress("20.93.155.38", 18000), 1000);
+                sock.connect(new InetSocketAddress("40.113.148.92", 18000), 1000);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -212,7 +212,7 @@ package com.example.myapplication;
             String messages = receiveRead.readLine();
             if (messages != "0") //receive from server
             {
-                Log.d("TEST", messages + "\n"); // displaying at DOS prompt
+                Log.d("rec message from server", messages + "\n"); // displaying at DOS prompt
                 final String mx=messages;
                 new Handler(Looper.getMainLooper()).post(new Runnable(){
                     @Override

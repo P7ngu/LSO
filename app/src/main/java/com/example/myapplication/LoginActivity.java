@@ -39,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(mContext, HomeActivity.class));
                     CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
                 }
+                    else {
+
+                        //TODO mostra messaggino
+                }
             }
         });
     }
