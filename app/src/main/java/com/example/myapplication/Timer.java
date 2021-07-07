@@ -4,6 +4,23 @@ import android.util.Log;
 
 public class Timer {
     private int startTime;
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
+    }
+
     private int currentTime;
 
     public Timer(int startTime1){
@@ -17,9 +34,10 @@ public class Timer {
             } catch (Exception e){
 
             }
-            if(currentTime!=0)
-            currentTime=currentTime-1;
-            else { //Il timer è a 0
+            if(currentTime!=0) {
+                currentTime = currentTime - 1;
+
+            }else { //Il timer è a 0
                 startTime=20;
                 currentTime=20;
                 //Chiediamo al server l'ultimo numero estratto
@@ -46,6 +64,11 @@ public class Timer {
             }
 
             Log.d("Debug timer", currentTime+"/n");
+            try{
+                WaitingActivity.setTimeLeft(currentTime);
+            } catch (Exception e){
+
+            }
 
         }
     }

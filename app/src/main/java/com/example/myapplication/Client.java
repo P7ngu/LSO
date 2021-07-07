@@ -153,7 +153,9 @@ public class Client {
             } catch (Exception e){
 
             }
-        MakeABetActivity.updateLatestNumber(number);
+        CurrentUser.setLastNumber(message);
+            MakeABetActivity.updateLatestNumber(message);
+
         return number;
 
     }

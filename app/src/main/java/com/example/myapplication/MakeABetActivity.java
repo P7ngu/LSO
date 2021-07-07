@@ -19,13 +19,6 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     Context mContext=this;
     static Button latestNumber;
 
-    public static void updateLatestNumber(Integer number) {
-       try {
-           if(latestNumber!=null) latestNumber.setText(number + "");
-       } catch (Exception e){
-        e.printStackTrace();
-       }
-    }
 
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -88,14 +81,21 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        int numeroEstratto = Client.getLatestNumber();
-        Log.d("Debug numero estratto", numeroEstratto+"numero<");
-        CurrentUser.setLastNumber(numeroEstratto+"");
-       Button latestNumber=findViewById(R.id.button2_latestnumber);
-        latestNumber.setText(numeroEstratto+"");
+        String numeroEstratto=null;
+       do{
+            numeroEstratto = CurrentUser.getLastNumber();
+            Button latestNumber = findViewById(R.id.button2_latestnumber);
+            latestNumber.setText(numeroEstratto + "");
+
+        }while(numeroEstratto==null);
 
 
 
 
+    }
+
+
+    public static void updateLatestNumber(String nuovoNumero){
+    if(latestNumber!=null) latestNumber.setText(nuovoNumero);
     }
 }

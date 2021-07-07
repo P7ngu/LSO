@@ -56,6 +56,11 @@ public class CurrentUser {
 
     public static void setLastNumber(String lastNumber) {
         CurrentUser.lastNumber = lastNumber;
+        try{
+            MakeABetActivity.updateLatestNumber(lastNumber);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static String getMoneyCount() {

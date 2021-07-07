@@ -40,17 +40,20 @@ public class DashboardFragment extends Fragment {
         recyclerView=recyclerView1;
 
 
+        try {
+            String users = Client.getUtentiAttivi();
+            String[] utentiArray = users.split(",,");
+            ArrayList<Utente> userList;
+            userList = new ArrayList<>();
+            for (int i = 0; i < utentiArray.length; i = i + 2) {
+                Utente tempUser = new Utente(utentiArray[i], utentiArray[i + 1]); //username, moneycount
+                userList.add(tempUser);
+            }
 
-        String users = Client.getUtentiAttivi();
-        String[] utentiArray = users.split(",,");
-        ArrayList<Utente> userList;
-        userList = new ArrayList<>();
-        for(int i=0; i<utentiArray.length; i=i+2){
-            Utente tempUser = new Utente(utentiArray[i], utentiArray[i+1]); //username, moneycount
-            userList.add(tempUser);
+            PutDataIntoRecyclerView(userList);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        PutDataIntoRecyclerView(userList);
         return root;
     }
 
