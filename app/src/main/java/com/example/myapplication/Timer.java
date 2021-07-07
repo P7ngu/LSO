@@ -26,7 +26,7 @@ public class Timer {
     public Timer(int startTime1){
         startTime=startTime1;
         currentTime=startTime;
-        while(true){
+        do{
             try {
                 Thread thread = new Thread();
                 thread.sleep(1000);
@@ -70,6 +70,6 @@ public class Timer {
 
             }
 
-        }
+        } while(true);
     }
 }
