@@ -16,9 +16,16 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     Spinner importoSpinner, numeroSpinner;
     Button sendBetButton;
     String numeroPuntato, importoScommesso;
-    Context mContext=this;
+    static Context mContext;
     static Button latestNumber;
 
+    public static void startWaitingActivity() {
+        try {
+            mContext.startActivity(new Intent(mContext, WaitingActivity.class));
+        } catch (Exception e){
+
+        }
+    }
 
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -52,6 +59,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_a_bet);
+        mContext=this;
 
 
             numeroSpinner = (Spinner) findViewById(R.id.numero_spinner);
@@ -82,12 +90,13 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         });
 
         String numeroEstratto=null;
-       do{
+
+       //do{
             numeroEstratto = CurrentUser.getLastNumber();
             Button latestNumber = findViewById(R.id.button2_latestnumber);
             latestNumber.setText(numeroEstratto + "");
 
-        }while(numeroEstratto==null);
+//        }while(numeroEstratto==null);
 
 
 

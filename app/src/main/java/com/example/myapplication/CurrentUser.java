@@ -6,6 +6,12 @@ public class CurrentUser {
     private static int startTime;
     private static Timer timer;
 
+    public static void setUserLoggedStatus(int userLoggedStatus) {
+        CurrentUser.userLoggedStatus = userLoggedStatus;
+    }
+
+    private static int userLoggedStatus;
+
     public static Timer getTimer() {
         return timer;
     }
@@ -85,6 +91,11 @@ public class CurrentUser {
 
     public static String getUsername() {
         return username;
+    }
+
+    public static int getUserLoggedStatus() {
+
+        return userLoggedStatus;
     }
 
     public void setUsername(String username) {

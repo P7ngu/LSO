@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(Client.inviaRichiestaLogin(nicknameET.getText().toString(), pwET.getText().toString())) {
                     startActivity(new Intent(mContext, HomeActivity.class));
                     CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
+                    CurrentUser.getInstance().setUserLoggedStatus(1);
                 }
                     else {
 

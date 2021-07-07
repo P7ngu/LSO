@@ -15,9 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myapplication.CurrentUser;
 import com.example.myapplication.HomeActivity;
 import com.example.myapplication.MakeABetActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.WaitingActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -38,7 +40,9 @@ public class HomeFragment extends Fragment {
         sendBetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext, MakeABetActivity.class));
+                if(CurrentUser.getTimer()!= null && CurrentUser.getTimer().getCurrentTime() > 30)
+                        startActivity(new Intent(mContext, MakeABetActivity.class));
+                else startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });
         mContext=container.getContext();
