@@ -69,7 +69,7 @@ public class Timer {
                 }
                 //Aggiorniamo e notifichiamo l'utente
             }
-
+            this.setCurrentTime(currentTime);
             Log.d("Debug timer", currentTime+"/n");
             try{
                 WaitingActivity.setTimeLeft(currentTime);

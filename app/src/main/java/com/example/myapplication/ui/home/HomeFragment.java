@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myapplication.Client;
 import com.example.myapplication.CurrentUser;
 import com.example.myapplication.HomeActivity;
 import com.example.myapplication.MakeABetActivity;
@@ -40,9 +41,12 @@ public class HomeFragment extends Fragment {
         sendBetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(CurrentUser.getTimer()!= null && CurrentUser.getTimer().getCurrentTime() > 30)
+                int timeLeft = Client.getTimerLeft();
+
+                    if (timeLeft > 30)
                         startActivity(new Intent(mContext, MakeABetActivity.class));
-                else startActivity(new Intent(mContext, WaitingActivity.class));
+                    else if (timeLeft <= 30)
+                        startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });
         mContext=container.getContext();

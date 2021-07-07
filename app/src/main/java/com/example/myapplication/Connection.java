@@ -136,6 +136,7 @@ package com.example.myapplication;
             receiveRead = new BufferedReader(new InputStreamReader(istream));
 
 
+
         }
 
         protected Object doInBackground1(Object[] objects) {
@@ -226,8 +227,9 @@ package com.example.myapplication;
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            setStartTime(getTimerLeft());
+            CurrentUser.setStartTime(getTimerLeft());
             CurrentUser.setTimer(new Timer(CurrentUser.getStartTime()));
+
             return null;
         }
     }

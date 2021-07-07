@@ -40,7 +40,6 @@ public class Client {
     }
 
     public static boolean inviaRichiestaLogin(String nome, String password) {
-
         PrintWriter pwrite = Connection.getPwrite();
         String blankspaces = " ";
         for(int i=nome.length(); i<10; i++){
