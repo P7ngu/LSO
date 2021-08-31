@@ -142,7 +142,7 @@ public class Client {
 
         String message = null;
         try {
-            Thread.sleep(5000);
+            Thread.sleep(100);
             message = Connection.receiveMessageFromServer();
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,7 +169,7 @@ public class Client {
 
         String message = null;
         try {
-            Thread.sleep(10);
+            Thread.sleep(3000);
             message = Connection.receiveMessageFromServer();
         } catch (Exception e) {
             e.printStackTrace();
