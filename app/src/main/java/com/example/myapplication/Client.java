@@ -83,14 +83,17 @@ public class Client {
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("timeleft");// sending to server
         pwrite.flush();                    // flush the data
+        Integer timeLeft=12345678;
 
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
+           if( !message.endsWith(",") )
+               timeLeft = new Integer(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Integer timeLeft = new Integer(message);
+
         return timeLeft;
 
 
@@ -166,7 +169,7 @@ public class Client {
 
         String message = null;
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10);
             message = Connection.receiveMessageFromServer();
         } catch (Exception e) {
             e.printStackTrace();

@@ -89,14 +89,12 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        String numeroEstratto=null;
 
-       //do{
-            numeroEstratto = CurrentUser.getLastNumber();
+        String numeroEstratto = Client.getLatestNumber()+"";
             Button latestNumber = findViewById(R.id.button2_latestnumber);
             latestNumber.setText(numeroEstratto + "");
 
-//        }while(numeroEstratto==null);
+
 
 
 
