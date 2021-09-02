@@ -4,8 +4,327 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C0C0C"
+    android:background="#121312"
     tools:context=".MakeABetActivity">
+
+    <CheckBox
+        android:id="@+id/cb_basso"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Bassi"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.694" />
+
+    <CheckBox
+        android:id="@+id/cb_alto"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Alti"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.641" />
+
+    <CheckBox
+        android:id="@+id/cB_dispari"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Dispari"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
+
+    <CheckBox
+        android:id="@+id/cB_pari"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Pari"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb21"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="21"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.681" />
+
+    <CheckBox
+        android:id="@+id/cb4"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="4"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41" />
+
+    <CheckBox
+        android:id="@+id/cb8"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="8"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <CheckBox
+        android:id="@+id/cb17"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="17"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.628" />
+
+    <CheckBox
+        android:id="@+id/cb23"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="23"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <CheckBox
+        android:id="@+id/cb29"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="29"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.841" />
+
+    <CheckBox
+        android:id="@+id/cb33"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="33"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
+
+    <CheckBox
+        android:id="@+id/cb3"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="3"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
+
+    <CheckBox
+        android:id="@+id/cb_1colonna"
+        android:layout_width="86dp"
+        android:layout_height="45dp"
+        android:height="45dp"
+        android:shadowColor="#420404"
+        android:text="1° colonna"
+        android:textColor="#050505"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <CheckBox
+        android:id="@+id/cb_2colonna"
+        android:layout_width="86dp"
+        android:layout_height="45dp"
+        android:height="45dp"
+        android:shadowColor="#420404"
+        android:text="2° colonna"
+        android:textColor="#000000"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <CheckBox
+        android:id="@+id/cb_3colonna"
+        android:layout_width="86dp"
+        android:layout_height="45dp"
+        android:height="45dp"
+        android:shadowColor="#2196F3"
+        android:text="3° colonna"
+        android:textColor="#000000"
+        android:textColorHighlight="#2196F3"
+        android:textColorLink="#2196F3"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <CheckBox
+        android:id="@+id/cb_nero"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Black"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <CheckBox
+        android:id="@+id/cb_rosso"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="Red"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.912"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <CheckBox
+        android:id="@+id/cb9"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="9"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <CheckBox
+        android:id="@+id/cb27"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="27"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <CheckBox
+        android:id="@+id/cb15"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="15"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
+
+    <CheckBox
+        android:id="@+id/cb7"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="7"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
 
     <Button
         android:id="@+id/button_sendbet"
@@ -15,33 +334,11 @@
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887"
+        app:layout_constraintVertical_bias="0.995"
         app:rippleColor="#8BC34A" />
-
-    <Spinner
-        android:id="@+id/numero_spinner"
-        android:layout_width="66dp"
-        android:layout_height="27dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
-
-    <Spinner
-        android:id="@+id/importo_spinner"
-        android:layout_width="82dp"
-        android:layout_height="33dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,10 +349,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/button2_latestnumber"
@@ -64,8 +361,384 @@
         android:text="Null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintVertical_bias="0.021" />
+
+    <CheckBox
+        android:id="@+id/cb5"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="5"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <CheckBox
+        android:id="@+id/cb12"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="12"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
+
+    <CheckBox
+        android:id="@+id/cb0"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.291" />
+
+    <CheckBox
+        android:id="@+id/cb10"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="10"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
+
+    <CheckBox
+        android:id="@+id/cb13"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="13"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
+
+    <CheckBox
+        android:id="@+id/cb16"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="16"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626" />
+
+    <CheckBox
+        android:id="@+id/cb19"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="19"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.681" />
+
+    <CheckBox
+        android:id="@+id/cb22"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="22"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <CheckBox
+        android:id="@+id/cb25"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="25"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <CheckBox
+        android:id="@+id/cb28"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="28"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.841" />
+
+    <CheckBox
+        android:id="@+id/cb31"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="31"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
+
+    <CheckBox
+        android:id="@+id/cb34"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="34"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <CheckBox
+        android:id="@+id/cb36"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="36"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <CheckBox
+        android:id="@+id/cb24"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="24"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <CheckBox
+        android:id="@+id/cb1"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <CheckBox
+        android:id="@+id/cb2"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="2"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <CheckBox
+        android:id="@+id/cb20"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="20"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.681" />
+
+    <CheckBox
+        android:id="@+id/cb26"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="26"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.788" />
+
+    <CheckBox
+        android:id="@+id/cb32"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="32"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
+
+    <CheckBox
+        android:id="@+id/cb35"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="35"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <CheckBox
+        android:id="@+id/cb6"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="6"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <CheckBox
+        android:id="@+id/cb14"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="14"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
+
+    <CheckBox
+        android:id="@+id/cb30"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="30"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.841" />
+
+    <CheckBox
+        android:id="@+id/cb18"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="18"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.628" />
+
+    <CheckBox
+        android:id="@+id/cb11"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:shadowColor="#420404"
+        android:text="11"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

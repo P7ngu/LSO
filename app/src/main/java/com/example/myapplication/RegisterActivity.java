@@ -24,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
         pw2ET=findViewById(R.id.editTextTextPassword2);
 
         registratiSendButton=findViewById(R.id.button_registrati_registrati);
+
         registratiSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
