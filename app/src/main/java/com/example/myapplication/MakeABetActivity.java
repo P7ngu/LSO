@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class MakeABetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner importoSpinner, numeroSpinner;
@@ -20,6 +23,32 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     String numeroPuntato, importoScommesso;
     static Context mContext;
     static Button latestNumber;
+    ArrayList<String> betSelezionate = new ArrayList<>();
+    ArrayList<CheckBox> checkBoxesCliccate = new ArrayList<>();
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.cb0:
+                if (checked) betSelezionate.add("0");
+                // Put some meat on the sandwich
+                else betSelezionate.remove("0");
+
+                break;
+            case R.id.cb1:
+                if (checked) betSelezionate.add("1");
+                else betSelezionate.remove("1");
+                // Cheese me
+
+                break;
+
+        }
+
+    }
+
 
 
     public static void startWaitingActivity() {
@@ -42,7 +71,13 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             // Another interface callback
         }
 
+public void rimuoviChecks(CheckBox checkDaLasciare){
+    for(int i=0; i<checkBoxesCliccate.size(); i++)
+        if(!checkBoxesCliccate.get(i).equals(checkDaLasciare)) checkBoxesCliccate.get(i).setChecked(false);
+    checkBoxesCliccate.clear();
 
+    checkBoxesCliccate.add(checkDaLasciare);
+}
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -65,9 +100,32 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         cc3.setBackgroundColor(Color.rgb(0,100,0));
 
         CheckBox c0 = findViewById(R.id.cb0);
+        c0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) c0).isChecked();
+                if (checked) {
+                    rimuoviChecks(c0);
+                    betSelezionate.add("0");
+                }
+                else betSelezionate.remove("0");
+            }
+        });
         c0.setBackgroundColor(Color.rgb(0,100,0));
 
         CheckBox c1 = findViewById(R.id.cb1);
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) c1).isChecked();
+                if (checked) {
+                    rimuoviChecks(c1);
+                    betSelezionate.add("1");
+                }
+                else betSelezionate.remove("1");
+
+            }
+        });
         c1.setBackgroundColor(Color.RED);
 
         CheckBox c3 = findViewById(R.id.cb3);
@@ -129,12 +187,19 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         sendBetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Da riaggiornare
+                //for (int i = 0; i < betSelezionate.size(); i++){
+                  //  Client.inviaScommessa((betSelezionate.get(i)), importoScommesso);
+                //Log.d("Debug 2.0", "Scommessa inviata" + betSelezionate.get(i));
+            //}
                 Client.inviaScommessa(numeroPuntato, importoScommesso);
                 CurrentUser.setNumeroBettato(numeroPuntato);
                 CurrentUser.setImportoScommesso(importoScommesso);
                 startActivity(new Intent(mContext, WaitingActivity.class));
             }
         });
+
+
 
 
         String numeroEstratto = Client.getLatestNumber()+"";
