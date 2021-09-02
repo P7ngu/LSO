@@ -123,7 +123,6 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                     betSelezionate.add("1");
                 }
                 else betSelezionate.remove("1");
-
             }
         });
         c1.setBackgroundColor(Color.RED);
