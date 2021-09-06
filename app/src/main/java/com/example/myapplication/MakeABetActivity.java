@@ -801,7 +801,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                   //  Client.inviaScommessa((betSelezionate.get(i)), importoScommesso);
                 //Log.d("Debug 2.0", "Scommessa inviata" + betSelezionate.get(i));
             //}
-                numeroPuntato= (String) checkBoxesCliccate.get(0).getText();
+                numeroPuntato= betSelezionate.get(0).toString();
                 Client.inviaScommessa(numeroPuntato, importoScommesso);
                 CurrentUser.setNumeroBettato(numeroPuntato);
                 CurrentUser.setImportoScommesso(importoScommesso);
