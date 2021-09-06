@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121312"
+    android:background="#006400"
     tools:context=".MakeABetActivity">
 
     <CheckBox
@@ -21,6 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.694" />
+
+    <Spinner
+        android:id="@+id/importo_spinner"
+        android:layout_width="82dp"
+        android:layout_height="33dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853" />
 
     <CheckBox
         android:id="@+id/cb_alto"
@@ -191,16 +203,18 @@
         android:layout_width="86dp"
         android:layout_height="45dp"
         android:height="45dp"
-        android:shadowColor="#420404"
+        android:shadowColor="#8BC34A"
         android:text="1° colonna"
-        android:textColor="#050505"
+        android:textColor="#FFFFFF"
         android:textIsSelectable="false"
+        app:buttonTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.208"
+        app:useMaterialThemeColors="false" />
 
     <CheckBox
         android:id="@+id/cb_2colonna"
@@ -209,8 +223,9 @@
         android:height="45dp"
         android:shadowColor="#420404"
         android:text="2° colonna"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textIsSelectable="false"
+        app:buttonTint="#F6F6F6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.27"
@@ -225,10 +240,11 @@
         android:height="45dp"
         android:shadowColor="#2196F3"
         android:text="3° colonna"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="#2196F3"
         android:textColorLink="#2196F3"
         android:textIsSelectable="false"
+        app:buttonTint="#FFF9F9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.544"

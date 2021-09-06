@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
@@ -62,8 +63,17 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                    int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        Spinner spinner = (Spinner) findViewById(R.id.importo_spinner);
+        Log.d("Debuggg", (String) parent.getItemAtPosition(pos));
+        Spinner spin = (Spinner)parent;
+        Spinner spin2 = (Spinner)parent;
 
-
+        if(spin.getId() == R.id.importo_spinner)
+        {
+            importoScommesso=parent.getItemAtPosition(pos)+"";
+        }
 
         }
 
@@ -86,18 +96,142 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         setContentView(R.layout.activity_make_a_bet);
         mContext=this;
 
+
+        importoSpinner = (Spinner) findViewById(R.id.importo_spinner);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.importi_array, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        importoSpinner.setAdapter(adapter1);
+
+        importoSpinner.setOnItemSelectedListener(this);
+
+        CheckBox cPari = findViewById(R.id.cB_pari);
+        cPari.setBackgroundColor(Color.BLACK);
+        cPari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cPari).isChecked();
+                if (checked) {
+                    rimuoviChecks(cPari);
+                    betSelezionate.add("40");
+                }
+                else betSelezionate.remove("40");
+            }
+        });
+
+
+        CheckBox cDisPari = findViewById(R.id.cB_dispari);
+        cDisPari.setBackgroundColor(Color.RED);
+        cDisPari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cDisPari).isChecked();
+                if (checked) {
+                    rimuoviChecks(cDisPari);
+                    betSelezionate.add("39");
+                }
+                else betSelezionate.remove("39");
+            }
+        });
+
+
         CheckBox cRed = findViewById(R.id.cb_rosso);
         cRed.setBackgroundColor(Color.RED);
-        //cRed.getButtonTintList(Color.RED);
+        cRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cRed).isChecked();
+                if (checked) {
+                    rimuoviChecks(cRed);
+                    betSelezionate.add("37");
+                }
+                else betSelezionate.remove("37");
+            }
+        });
+
+        CheckBox cBlack = findViewById(R.id.cb_nero);
+        cBlack.setBackgroundColor(Color.BLACK);
+        cBlack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cBlack).isChecked();
+                if (checked) {
+                    rimuoviChecks(cBlack);
+                    betSelezionate.add("38");
+                }
+                else betSelezionate.remove("38");
+            }
+        });
+
+        CheckBox cAlto = findViewById(R.id.cb_alto);
+        cAlto.setBackgroundColor(Color.BLACK);
+        cAlto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cAlto).isChecked();
+                if (checked) {
+                    rimuoviChecks(cAlto);
+                    betSelezionate.add("42");
+                }
+                else betSelezionate.remove("42");
+            }
+        });
+
+        CheckBox cBasso = findViewById(R.id.cb_basso);
+        cBasso.setBackgroundColor(Color.RED);
+        cBasso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cBasso).isChecked();
+                if (checked) {
+                    rimuoviChecks(cBasso);
+                    betSelezionate.add("41");
+                }
+                else betSelezionate.remove("41");
+            }
+        });
 
         CheckBox cc1 = findViewById(R.id.cb_1colonna);
         cc1.setBackgroundColor(Color.rgb(0,100,0));
+        cc1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cc1).isChecked();
+                if (checked) {
+                    rimuoviChecks(cc1);
+                    betSelezionate.add("43");
+                }
+                else betSelezionate.remove("43");
+            }
+        });
 
         CheckBox cc2 = findViewById(R.id.cb_2colonna);
         cc2.setBackgroundColor(Color.rgb(0,100,0));
+        cc2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cc2).isChecked();
+                if (checked) {
+                    rimuoviChecks(cc2);
+                    betSelezionate.add("44");
+                }
+                else betSelezionate.remove("44");
+            }
+        });
 
         CheckBox cc3 = findViewById(R.id.cb_3colonna);
         cc3.setBackgroundColor(Color.rgb(0,100,0));
+        cc3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) cc3).isChecked();
+                if (checked) {
+                    rimuoviChecks(cc3);
+                    betSelezionate.add("45");
+                }
+                else betSelezionate.remove("45");
+            }
+        });
 
         CheckBox c0 = findViewById(R.id.cb0);
         c0.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +245,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                 else betSelezionate.remove("0");
             }
         });
-        c0.setBackgroundColor(Color.rgb(0,100,0));
+        c0.setBackgroundColor(Color.rgb(139,195,74));
 
         CheckBox c1 = findViewById(R.id.cb1);
         c1.setOnClickListener(new View.OnClickListener() {
@@ -357,7 +491,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
             public void onClick(View v) {
                 boolean checked = ((CheckBox) c36).isChecked();
                 if (checked) {
-                    rimuoviChecks(c3);
+                    rimuoviChecks(c36);
                     betSelezionate.add("36");
                 }
                 else betSelezionate.remove("36");
@@ -384,6 +518,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
         ////////neri
         CheckBox c2 = findViewById(R.id.cb2);
+        c2.setBackgroundColor(Color.BLACK);
         c2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -398,6 +533,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c4 = findViewById(R.id.cb4);
+        c4.setBackgroundColor(Color.BLACK);
         c4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -412,6 +548,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c6 = findViewById(R.id.cb6);
+        c6.setBackgroundColor(Color.BLACK);
         c6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -425,6 +562,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         });
 
         CheckBox c8 = findViewById(R.id.cb8);
+        c8.setBackgroundColor(Color.BLACK);
         c8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -439,6 +577,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c10 = findViewById(R.id.cb10);
+        c10.setBackgroundColor(Color.BLACK);
         c10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -453,6 +592,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c11 = findViewById(R.id.cb11);
+        c11.setBackgroundColor(Color.BLACK);
         c11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -467,6 +607,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c13 = findViewById(R.id.cb13);
+        c13.setBackgroundColor(Color.BLACK);
         c13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -481,6 +622,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c15 = findViewById(R.id.cb15);
+        c15.setBackgroundColor(Color.BLACK);
         c15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -495,6 +637,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c17 = findViewById(R.id.cb17);
+        c17.setBackgroundColor(Color.BLACK);
         c17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -509,6 +652,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c20 = findViewById(R.id.cb20);
+        c20.setBackgroundColor(Color.BLACK);
         c20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -523,6 +667,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c22 = findViewById(R.id.cb22);
+        c22.setBackgroundColor(Color.BLACK);
         c22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -537,6 +682,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c24 = findViewById(R.id.cb24);
+        c24.setBackgroundColor(Color.BLACK);
         c24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -551,6 +697,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c26 = findViewById(R.id.cb26);
+        c26.setBackgroundColor(Color.BLACK);
         c26.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -565,6 +712,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c28 = findViewById(R.id.cb28);
+        c28.setBackgroundColor(Color.BLACK);
         c28.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -578,6 +726,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         });
 
         CheckBox c29 = findViewById(R.id.cb29);
+        c29.setBackgroundColor(Color.BLACK);
         c29.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -592,6 +741,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c31 = findViewById(R.id.cb31);
+        c31.setBackgroundColor(Color.BLACK);
         c31.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -606,6 +756,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c33 = findViewById(R.id.cb33);
+        c33.setBackgroundColor(Color.BLACK);
         c33.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -620,6 +771,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
         CheckBox c35 = findViewById(R.id.cb35);
+        c35.setBackgroundColor(Color.BLACK);
         c35.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -649,6 +801,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                   //  Client.inviaScommessa((betSelezionate.get(i)), importoScommesso);
                 //Log.d("Debug 2.0", "Scommessa inviata" + betSelezionate.get(i));
             //}
+                numeroPuntato= (String) checkBoxesCliccate.get(0).getText();
                 Client.inviaScommessa(numeroPuntato, importoScommesso);
                 CurrentUser.setNumeroBettato(numeroPuntato);
                 CurrentUser.setImportoScommesso(importoScommesso);
