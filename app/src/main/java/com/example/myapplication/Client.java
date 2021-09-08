@@ -34,9 +34,8 @@ public class Client {
         pwrite.flush();                    // flush the data
         //GetMessage getMessage = new GetMessage();
         //getMessage.run();
-        //if(getMessage.getMessage().equals("register_success")) return true;
-        //else
-            return false;
+
+            return true;
     }
 
     public static boolean inviaRichiestaLogin(String nome, String password) {

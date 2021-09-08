@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
                     CurrentUser.getInstance().setUserLoggedStatus(1);
                 }
                     else {
-
-                        //TODO mostra messaggino
+                    if(nicknameET.getText().length()==0 || pwET.getText().length()==0) PopupController.mostraPopup("Errore durante il login", "Compila tutti i campi!", mContext);
+                    else PopupController.mostraPopup("Errore durante il login", "Dati non validi!", mContext);
                 }
             }
         });
