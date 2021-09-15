@@ -15,10 +15,21 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class HomeActivity extends AppCompatActivity {
+    static Context mContext;
+
+    public static void showWinMessage() {
+        PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+
+    }
+
+    public static void showLostMessage() {
+        PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Context mContext=this;
+       mContext=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 

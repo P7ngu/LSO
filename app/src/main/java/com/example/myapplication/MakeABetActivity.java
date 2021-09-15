@@ -27,6 +27,18 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<String> betSelezionate = new ArrayList<>();
     ArrayList<CheckBox> checkBoxesCliccate = new ArrayList<>();
 
+    public static void showWinMessage() {
+        PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+        WaitingActivity.showWinMessage();
+        HomeActivity.showWinMessage();
+    }
+
+    public static void showLostMessage() {
+        PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+        WaitingActivity.showLostMessage();
+        HomeActivity.showLostMessage();
+    }
+
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();

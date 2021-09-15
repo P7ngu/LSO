@@ -11,6 +11,16 @@ public class WaitingActivity extends AppCompatActivity {
     static Button tempoResiduo;
     static Context mContext;
 
+    public static void showWinMessage() {
+        PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+
+    }
+
+    public static void showLostMessage() {
+        PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

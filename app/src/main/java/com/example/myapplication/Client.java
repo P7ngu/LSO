@@ -87,6 +87,7 @@ public class Client {
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "timerleft");
            if( !message.endsWith(",") )
                timeLeft = new Integer(message);
         } catch (IOException e) {
@@ -106,6 +107,7 @@ public class Client {
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "utenti attivi");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -144,20 +146,34 @@ public class Client {
         try {
             Thread.sleep(100);
             message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "estrazione");
         } catch (Exception e) {
             e.printStackTrace();
         }
         Integer number=0;
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" "))
-            try{
-                number = new Integer(message);
-            } catch (Exception e){
+                && message!=null && !message.equals("") && !message.equals(" ")) {
+            if(message.contains("**")) {
+                Log.d("15 settembre", "Contiene**");
+                //E' il numero estratto
+                message.replace("**", "");
+                try {
+                    number = new Integer(message);
+                } catch (Exception e) {
 
+                }
+                if(CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato()!=null && CurrentUser.getNumeroBettato().equals(message)){
+                    MakeABetActivity.showWinMessage();
+                    Log.d("15 settembre", "Vittoria");
+                } else {
+                    MakeABetActivity.showLostMessage();
+                    Log.d("15 settembre", "Sconfitta");
+                }
+
+                CurrentUser.setLastNumber(message);
+                MakeABetActivity.updateLatestNumber(message);
             }
-        CurrentUser.setLastNumber(message);
-            MakeABetActivity.updateLatestNumber(message);
-
+        }
         return number;
 
     }
@@ -169,16 +185,18 @@ public class Client {
 
         String message = null;
         try {
-            Thread.sleep(3000);
+            Thread.sleep(100);
             message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "latest number");
         } catch (Exception e) {
             e.printStackTrace();
         }
         Integer number=0;
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" "))
+                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**"))
             try{
                 number = new Integer(message);
+                Log.d("15 settembre", "latest number");
             } catch (Exception e){
 
             }
@@ -194,6 +212,7 @@ public class Client {
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "lista utenti");
         } catch (IOException e) {
             e.printStackTrace();
         }
