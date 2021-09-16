@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,16 +30,29 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<String> betSelezionate = new ArrayList<>();
     ArrayList<CheckBox> checkBoxesCliccate = new ArrayList<>();
 
+
+
     public static void showWinMessage() {
-        PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
-        WaitingActivity.showWinMessage();
-        HomeActivity.showWinMessage();
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+                WaitingActivity.showWinMessage();
+                HomeActivity.showWinMessage();
+            }
+        });
     }
 
     public static void showLostMessage() {
-        PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
-        WaitingActivity.showLostMessage();
-        HomeActivity.showLostMessage();
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+             PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+             WaitingActivity.showLostMessage();
+             HomeActivity.showLostMessage();
+            }
+        });
+
     }
 
     public void onCheckboxClicked(View view) {

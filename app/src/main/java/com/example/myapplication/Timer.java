@@ -64,8 +64,12 @@ public class Timer {
                         CurrentUser.setMoneyCount(prevMoney + moneyWon + "");
                         //Notifica
                     }
+
                 }catch (Exception e){
 
+                }
+                finally {
+                    CurrentUser.setNumeroBettato("-1");
                 }
                 //Aggiorniamo e notifichiamo l'utente
             }

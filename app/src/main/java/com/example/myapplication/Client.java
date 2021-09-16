@@ -2,26 +2,10 @@ package com.example.myapplication;
 
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Client {
-    public static void gesticiOperazione(String messages) {
-        switch (messages){
-            case "Start":
-
-                break;
-
-            case "LoginEffettuato":
-
-                break;
-
-            case "RegisterEffettuata":
-
-                break;
-        }
-    }
 
     public static boolean inviaRichiestaRegistrazione(String nome, String password) {
         PrintWriter pwrite = Connection.getPwrite();
@@ -138,6 +122,7 @@ public class Client {
     }
 
     public static int extractLatestNumber() {
+        Integer number = null;
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("estrazione");// sending to server
         pwrite.flush();                    // flush the data
@@ -146,37 +131,130 @@ public class Client {
         try {
             Thread.sleep(100);
             message = Connection.receiveMessageFromServer();
+            if(message == null) extractLatestNumber2();
             Log.d("15 settembre", "estrazione");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Integer number=0;
+
+        
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
                 && message!=null && !message.equals("") && !message.equals(" ")) {
             if(message.contains("**")) {
                 Log.d("15 settembre", "Contiene**");
                 //E' il numero estratto
-                message.replace("**", "");
-                try {
-                    number = new Integer(message);
-                } catch (Exception e) {
+                String numberString = message.replace("**", "");
+                number = Integer.parseInt(numberString);
 
-                }
-                if(CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato()!=null && CurrentUser.getNumeroBettato().equals(message)){
+                if(CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato()!=null && checkForWin(number)){
                     MakeABetActivity.showWinMessage();
                     Log.d("15 settembre", "Vittoria");
                 } else {
-                    MakeABetActivity.showLostMessage();
-                    Log.d("15 settembre", "Sconfitta");
+                    if(CurrentUser.getNumeroBettato()!=null && !CurrentUser.getNumeroBettato().equals("-1")) {
+                        MakeABetActivity.showLostMessage();
+                        Log.d("15 settembre", "Sconfitta, bettato: " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
+                    } else Log.d("16 settembre", "Nessun numero bettato  " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
                 }
 
                 CurrentUser.setLastNumber(message);
                 MakeABetActivity.updateLatestNumber(message);
-            }
+            } else return extractLatestNumber2();
         }
         return number;
 
     }
+
+    public static int extractLatestNumber2() { //Da modificare con colonne etc
+        Integer number = null;
+        String message = null;
+        try {
+            Thread.sleep(100);
+            message = Connection.receiveMessageFromServer();
+            if(message == null) extractLatestNumber2();
+            Log.d("15 settembre", "estrazione");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
+                && message!=null && !message.equals("") && !message.equals(" ")) {
+            if(message.contains("**")) {
+                Log.d("15 settembre", "Contiene**");
+                //E' il numero estratto
+                String numberString = message.replace("**", "");
+                number = Integer.parseInt(message);
+
+                if(CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato()!=null && checkForWin(number)){
+                    MakeABetActivity.showWinMessage();
+                    Log.d("15 settembre", "Vittoria");
+                } else {
+                    MakeABetActivity.showLostMessage();
+                    Log.d("15 settembre", "Sconfitta, bettato: "+CurrentUser.getNumeroBettato()+"Uscito: "+ message);
+                }
+
+                CurrentUser.setLastNumber(message);
+                MakeABetActivity.updateLatestNumber(message);
+            } else return extractLatestNumber2();
+        }
+        return number;
+
+    }
+
+    public static boolean checkForWin(Integer numeroUscitoInt){
+        String numeroBettatoString=  CurrentUser.getNumeroBettato();
+        Integer numeroBettatoInt = Integer.parseInt(numeroBettatoString);
+        if(numeroBettatoInt==-1) return false;
+        if (numeroBettatoInt<37){
+            Log.d("16 settembre", "numeroB <37"+ "uscito "+numeroUscitoInt);
+            return (numeroBettatoInt==numeroUscitoInt);
+        }
+        else if(numeroBettatoInt==37){
+            Log.d("16 settembre", "numeroB =37"+ "uscito "+numeroUscitoInt);
+        return isNumeroRosso(numeroUscitoInt);
+        }else if(numeroBettatoInt==38){
+            Log.d("16 settembre", "numeroB =38"+ "uscito "+numeroUscitoInt);
+        return (!isNumeroRosso(numeroUscitoInt));
+        } else if(numeroBettatoInt==39){
+            Log.d("16 settembre", "numeroB =39"+ "uscito "+numeroUscitoInt);
+            return (numeroUscitoInt%2 != 0); //dispari
+        } else if(numeroBettatoInt==40){
+            Log.d("16 settembre", "numeroB =40"+ "uscito "+numeroUscitoInt);
+            return (numeroUscitoInt%2 == 0); //pari
+        } else if(numeroBettatoInt==41){ //bassi
+            Log.d("16 settembre", "numeroB =41" + "uscito "+numeroUscitoInt);
+            return (numeroUscitoInt<19);
+        } else if(numeroBettatoInt==42){ //alti
+            Log.d("16 settembre", "numeroB =42, uscito "+numeroUscitoInt);
+            if(numeroUscitoInt > 18) return true;
+            else return false;
+        } else if(numeroBettatoInt==43){
+            Log.d("16 settembre", "numeroB =43, uscito "+numeroUscitoInt);
+            return (numeroUscitoInt>0 && numeroUscitoInt < 13);
+        } else if(numeroBettatoInt==44){
+            Log.d("16 settembre", "numeroB =44 uscito" +numeroUscitoInt);
+            return (numeroUscitoInt>12 && numeroUscitoInt < 25);
+        } else if(numeroBettatoInt==45){
+            Log.d("16 settembre", "numeroB =45"+ "uscito "+numeroUscitoInt);
+        return (numeroUscitoInt>24 && numeroUscitoInt < 37);
+        } else{
+            Log.d("16 settembre", "nessun caso    + \"uscito \"+numeroUscitoInt");
+            return false;
+        }
+    }
+
+    //Check numeri
+    static boolean isNumeroRosso(int input){
+        int rossi[] = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
+        for(int i = 0; i<18; i++){
+            if(rossi[i] == input){
+                Log.d("16 Settembre", "\n NUMERO ROSSO\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     public static int getLatestNumber() {
         PrintWriter pwrite = Connection.getPwrite();
@@ -185,7 +263,7 @@ public class Client {
 
         String message = null;
         try {
-            Thread.sleep(100);
+            Thread.sleep(95);
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "latest number");
         } catch (Exception e) {
@@ -193,13 +271,37 @@ public class Client {
         }
         Integer number=0;
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**"))
+                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**") && message.contains("--"))
             try{
                 number = new Integer(message);
                 Log.d("15 settembre", "latest number");
             } catch (Exception e){
 
             }
+        else return getLatestNumber2();
+        return number;
+
+    }
+
+    public static int getLatestNumber2() {
+        String message = null;
+        try {
+            Thread.sleep(95);
+            message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "latest number");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Integer number=0;
+        if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
+                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**") && message.contains("--"))
+            try{
+                number = new Integer(message);
+                Log.d("15 settembre", "latest number");
+            } catch (Exception e){
+
+            }
+        else return getLatestNumber2();
         return number;
 
     }

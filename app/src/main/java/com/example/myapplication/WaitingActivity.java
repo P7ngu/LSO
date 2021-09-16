@@ -10,14 +10,15 @@ import android.widget.Button;
 public class WaitingActivity extends AppCompatActivity {
     static Button tempoResiduo;
     static Context mContext;
+    static boolean flagWin;
 
     public static void showWinMessage() {
-        PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+        flagWin=true;
 
     }
 
     public static void showLostMessage() {
-        PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+        flagWin=false;
 
     }
 
@@ -33,8 +34,15 @@ public class WaitingActivity extends AppCompatActivity {
 
     public static void setTimeLeft(int timeLeft){
             tempoResiduo.setText(timeLeft+ "");
-            if(timeLeft==0)
+            if(timeLeft==0) {
                 mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
+                if(!CurrentUser.getNumeroBettato().equals("-1")) {
+                    if (flagWin) MakeABetActivity.showWinMessage();
+                    else MakeABetActivity.showLostMessage();
+                }
+
+                flagWin=false;
+            }
 
     }
 }
