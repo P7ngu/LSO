@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,14 @@ import androidx.navigation.ui.NavigationUI;
 
 public class HomeActivity extends AppCompatActivity {
     static Context mContext;
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(mContext, HomeActivity.class);
+        startActivity(setIntent);
+        return;
+    }
 
     public static void showWinMessage() {
         PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);

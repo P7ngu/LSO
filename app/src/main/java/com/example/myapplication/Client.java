@@ -182,7 +182,7 @@ public class Client {
                 Log.d("15 settembre", "Contiene**");
                 //E' il numero estratto
                 String numberString = message.replace("**", "");
-                number = Integer.parseInt(message);
+                number = Integer.parseInt(numberString);
 
                 if(CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato()!=null && checkForWin(number)){
                     MakeABetActivity.showWinMessage();

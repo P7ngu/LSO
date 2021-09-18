@@ -30,6 +30,14 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<String> betSelezionate = new ArrayList<>();
     ArrayList<CheckBox> checkBoxesCliccate = new ArrayList<>();
 
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(mContext, HomeActivity.class);
+        startActivity(setIntent);
+        return;
+    }
+
 
 
     public static void showWinMessage() {

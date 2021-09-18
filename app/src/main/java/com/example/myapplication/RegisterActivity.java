@@ -18,6 +18,14 @@ public class RegisterActivity extends AppCompatActivity {
     Context mContext;
 
     @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(mContext, LoginActivity.class);
+        startActivity(setIntent);
+        return;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext=this;

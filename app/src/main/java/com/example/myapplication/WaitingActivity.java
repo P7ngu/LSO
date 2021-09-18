@@ -5,12 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 public class WaitingActivity extends AppCompatActivity {
     static Button tempoResiduo;
     static Context mContext;
     static boolean flagWin;
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(mContext, HomeActivity.class);
+        startActivity(setIntent);
+        return;
+    }
 
     public static void showWinMessage() {
         flagWin=true;
