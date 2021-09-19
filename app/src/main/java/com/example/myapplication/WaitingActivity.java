@@ -39,6 +39,8 @@ public class WaitingActivity extends AppCompatActivity {
 
         tempoResiduo=findViewById(R.id.button_temporesiduo_waitingactivity);
 
+        tempoResiduo.setText("Clicca per visualizzare");
+
     }
 
     public static void setTimeLeft(int timeLeft){
