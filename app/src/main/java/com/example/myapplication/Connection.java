@@ -112,7 +112,7 @@ package com.example.myapplication;
             sock = new Socket();
             //Throws SocketTimeoutException after 1s if server is unreachable
             try {
-                sock.connect(new InetSocketAddress("20.105.148.48", 18000), 15000);
+                sock.connect(new InetSocketAddress("52.236.135.22", 18000), 15000);
             } catch (IOException e) {
                 e.printStackTrace();
             }

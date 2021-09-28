@@ -342,4 +342,20 @@ public class Client {
         return "not received";
 
     }
+
+    public static void inviaRichiestaLogout(String username) {
+        PrintWriter pwrite = Connection.getPwrite();
+        pwrite.println("logout "+username);// sending to server
+        pwrite.flush();                    // flush the data
+
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+            if(message.contains("logout"))
+            Log.d("28 settembre", "logout "+message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
