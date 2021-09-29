@@ -40,9 +40,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public static void logoutCurrentUser(Context mContext) {
-        Log.d("28 settemmbre", "user pressed logout button");
+        Log.d("28 settembre", "user pressed logout button from Home");
 
         Client.inviaRichiestaLogout(CurrentUser.getInstance().getUsername());
+        CurrentUser.setInstance(null);
+        mContext.startActivity(new Intent(mContext, LoginActivity.class));
     }
 
     @Override
