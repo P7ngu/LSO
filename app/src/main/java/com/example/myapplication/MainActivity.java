@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         Connection connection = new Connection(testTextView);
 
+        CurrentUser.setLastNumber(Client.getLatestNumber()+"");
+
         //connection.execute();
 
 

@@ -56,7 +56,7 @@ public class Timer {
                 //Verifichiamo la puntata
                 int numeroEstratto = Client.extractLatestNumber();
                 Log.d("Debug numero estratto", numeroEstratto+"numero<");
-                CurrentUser.setLastNumber(numeroEstratto+"");
+                //CurrentUser.setLastNumber(numeroEstratto+"");
                 try {
                     if (CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
                         int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());

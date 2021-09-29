@@ -156,8 +156,9 @@ public class Client {
                     } else Log.d("16 settembre", "Nessun numero bettato  " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
                 }
 
-                CurrentUser.setLastNumber(message);
-                MakeABetActivity.updateLatestNumber(message);
+                CurrentUser.setLastNumber(numberString);
+                MakeABetActivity.updateLatestNumber(numberString);
+                try{MakeABetActivity.latestNumber.setText(message);}catch (Exception e){}
             } else return extractLatestNumber2();
         }
         return number;
@@ -192,8 +193,9 @@ public class Client {
                     Log.d("15 settembre", "Sconfitta, bettato: "+CurrentUser.getNumeroBettato()+"Uscito: "+ message);
                 }
 
-                CurrentUser.setLastNumber(message);
-                MakeABetActivity.updateLatestNumber(message);
+                CurrentUser.setLastNumber(numberString);
+                MakeABetActivity.updateLatestNumber(numberString);
+                try{MakeABetActivity.latestNumber.setText(message);}catch (Exception e){}
             } else return extractLatestNumber2();
         }
         return number;
@@ -257,24 +259,27 @@ public class Client {
 
 
     public static int getLatestNumber() {
-        PrintWriter pwrite = Connection.getPwrite();
-        pwrite.println("latestnumber");// sending to server
-        pwrite.flush();                    // flush the data
-
         String message = null;
         try {
-            Thread.sleep(95);
+            Thread.sleep(505);
+            PrintWriter pwrite = Connection.getPwrite();
+            pwrite.println("latestnumber");// sending to server
+            pwrite.flush();                    // flush the data
             message = Connection.receiveMessageFromServer();
-            Log.d("15 settembre", "latest number");
+            Log.d("15 settembre", "latest number1 out "+message);
         } catch (Exception e) {
             e.printStackTrace();
         }
         Integer number=0;
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**") && message.contains("--"))
+                && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**") && message.contains("-"))
             try{
-                number = new Integer(message);
-                Log.d("15 settembre", "latest number");
+                Log.d("15 settembre", "latest number1 in"+message);
+                String numberString = message.replace("--", "");
+                number = Integer.parseInt(numberString);
+               if(CurrentUser.getLastNumber()==null || CurrentUser.getLastNumber()=="") try{MakeABetActivity.latestNumber.setText(message);}catch (Exception e){}
+
+                return number;
             } catch (Exception e){
 
             }
@@ -288,7 +293,7 @@ public class Client {
         try {
             Thread.sleep(95);
             message = Connection.receiveMessageFromServer();
-            Log.d("15 settembre", "latest number");
+            Log.d("15 settembre", "latest number out "+message);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -296,8 +301,11 @@ public class Client {
         if(!message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
                 && message!=null && !message.equals("") && !message.equals(" ") && !message.contains("**") && message.contains("--"))
             try{
-                number = new Integer(message);
-                Log.d("15 settembre", "latest number");
+                String numberString = message.replace("--", "");
+                number = Integer.parseInt(numberString);
+                Log.d("15 settembre", "latest number"+message);
+                if(CurrentUser.getLastNumber()==null || CurrentUser.getLastNumber()=="") try{MakeABetActivity.latestNumber.setText(message);}catch (Exception e){}
+                return number;
             } catch (Exception e){
 
             }
@@ -319,6 +327,7 @@ public class Client {
             e.printStackTrace();
         }
         if( !message.contains(",") && //Scartiamo gli utenti online
+                 !message.contains("--") &&
                 !message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
                 && message!=null && !message.equals("") && !message.equals(" ")
                 && !message.equals("1") && !message.equals("2") && !message.equals("3") && !message.equals("4") && !message.equals("5")

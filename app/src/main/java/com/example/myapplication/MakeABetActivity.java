@@ -845,12 +845,12 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
             }
         });
 
+            latestNumber = findViewById(R.id.button2_latestnumber);
+            String numeroEstratto = CurrentUser.getLastNumber()+"";
+            Log.d("29 settembre", numeroEstratto+"< Latest number");
 
-
-
-        String numeroEstratto = Client.getLatestNumber()+"";
-            Button latestNumber = findViewById(R.id.button2_latestnumber);
-            latestNumber.setText(numeroEstratto + "");
+            //latestNumber.setText(numeroEstratto + "");
+        latestNumber.setText("Show");
 
 
 
