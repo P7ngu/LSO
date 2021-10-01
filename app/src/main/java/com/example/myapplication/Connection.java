@@ -37,6 +37,8 @@ package com.example.myapplication;
         BufferedReader keyRead;
         OutputStream ostream;
        static PrintWriter pwrite;
+       static String ipDaConnettere;
+       static Integer portDaConnettere;
 
         public static Context getMyContext() {
             return myContext;
@@ -52,6 +54,11 @@ package com.example.myapplication;
 
         public static void setTest(TextView test) {
             Connection.test = test;
+        }
+
+        public static void setConnectionData(String ip_formattato, String port_input) {
+            ipDaConnettere=ip_formattato;
+            portDaConnettere=Integer.parseInt(port_input);
         }
 
         public Socket getSock() {
@@ -105,14 +112,16 @@ package com.example.myapplication;
         InputStream istream;
         static BufferedReader receiveRead;
 
-        public Connection(TextView tv) {
-            test = tv;
+        public Connection(String ip, String port) {
+            setConnectionData(ip, port);
+
             Log.d("TEST", "inizio thread");
             //Throws ConnectException if the network is off or the server is unreachable
             sock = new Socket();
             //Throws SocketTimeoutException after 1s if server is unreachable
             try {
-                sock.connect(new InetSocketAddress("52.236.135.22", 18000), 15000);
+                //sock.connect(new InetSocketAddress("52.236.135.22", 18000), 15000);
+                sock.connect(new InetSocketAddress(ipDaConnettere, portDaConnettere), 15000);
             } catch (IOException e) {
                 e.printStackTrace();
             }

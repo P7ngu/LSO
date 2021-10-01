@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        Connection connection = new Connection(testTextView);
+        //Connection connection = new Connection();
 
-        CurrentUser.setLastNumber(Client.getLatestNumber()+"");
+        //CurrentUser.setLastNumber(Client.getLatestNumber()+"");
 
         //connection.execute();
 
@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         testTextView = findViewById(R.id.testing);
-        Connection connection = new Connection(testTextView);
-        connection.execute();
-        startActivity(new Intent(this, RegisterActivity.class));
+       // Connection connection = new Connection(testTextView);
+        //connection.execute();
+        //startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(this, DatiServerActivity.class));
 
 
         //CurrentUser.setTimer(new Timer(CurrentUser.getStartTime()));
