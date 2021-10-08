@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class DatiServerActivity extends AppCompatActivity {
-    Button sendConnectBTN;
+    Button sendConnectBTN, autoConnectBTN;
     EditText ip1, ip2, ip3, ip4, port;
     Context mContext;
 
@@ -22,11 +22,30 @@ public class DatiServerActivity extends AppCompatActivity {
         mContext=this;
 
         sendConnectBTN=findViewById(R.id.button_connect);
+        autoConnectBTN=findViewById(R.id.auto_connect);
         ip1=findViewById(R.id.editTextNumber_ip1);
         ip2=findViewById(R.id.editTextNumber_ip2);
         ip3=findViewById(R.id.editTextNumber_ip3);
         ip4=findViewById(R.id.editTextNumber_ip4);
         port=findViewById(R.id.editTextNumber_port);
+        String ipPrestabilito="52.236.135.22";
+
+        autoConnectBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Connection connection = new Connection(ipPrestabilito, port.getText().toString());
+                    Connection.setConnectionData(ipPrestabilito, port.getText().toString());
+                    connection.execute();
+                    CurrentUser.setLastNumber(Client.getLatestNumber()+"");
+                    startActivity(new Intent(mContext, RegisterActivity.class));
+                } catch (Exception e){
+                    PopupController.mostraPopup("Errore", "Errore connessione server", mContext);
+                    e.printStackTrace();
+
+                }
+            }
+        });
 
         sendConnectBTN.setOnClickListener(new View.OnClickListener() {
             @Override
