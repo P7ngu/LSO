@@ -18,6 +18,12 @@ public class Client {
         pwrite.flush();                    // flush the data
         //GetMessage getMessage = new GetMessage();
         //getMessage.run();
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
             return true;
     }
@@ -137,7 +143,7 @@ public class Client {
         return getUtentiAttivi2();
     }
 
-    public static int extractLatestNumber() {
+    public static Integer extractLatestNumber() {
         Integer number = null;
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("estrazione");// sending to server
@@ -346,7 +352,7 @@ public class Client {
         if( !message.contains(",") && //Scartiamo gli utenti online
                  !message.contains("--") &&
                 !message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" ")
+                && message!=null
                 && !message.equals("1") && !message.equals("2") && !message.equals("3") && !message.equals("4") && !message.equals("5")
                 && !message.equals("6") && !message.equals("7") && !message.equals("8") && !message.equals("9") && !message.equals("10")
                 && !message.equals("11") && !message.equals("12") && !message.equals("13") && !message.equals("14") && !message.equals("15")
@@ -375,7 +381,7 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if( message.contains(";") ) {
+        if( message.contains(";") || message.equals("") || message.equals(" ")) {
             Log.d("Lista utenti", message + " end");
             return message;
         } else return getListaUtenti2();
