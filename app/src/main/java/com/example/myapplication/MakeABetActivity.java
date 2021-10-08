@@ -850,7 +850,11 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
             Log.d("29 settembre", numeroEstratto+"< Latest number");
 
             //latestNumber.setText(numeroEstratto + "");
-        latestNumber.setText("Show");
+        try{
+            latestNumber.setText("Show");
+        } catch (Exception e){
+            Client.getLatestNumber();
+        }
 
 
 

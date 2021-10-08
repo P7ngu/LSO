@@ -73,14 +73,25 @@ public class Client {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "timerleft");
            if( !message.endsWith(",") )
-               timeLeft = new Integer(message);
+               try{ timeLeft = new Integer(message);} catch (Exception e){return getTimerLeft2();}
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return timeLeft;
+    }
 
-
+    public static int getTimerLeft2(){
+        Integer timeLeft=21298129;
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "timerleft");
+            if( !message.endsWith(",") )
+                try{ timeLeft = new Integer(message);} catch (Exception e){return getTimerLeft2();}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return timeLeft;
     }
 
     public static String getUtentiAttivi(){
@@ -347,8 +358,21 @@ public class Client {
         ) {
             Log.d("Lista utenti", message + " end");
             return message;
+        } else return getListaUtenti2();
+
+    }
+    public static String getListaUtenti2() {
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "lista utenti");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return "not received";
+        if( message.contains(";") ) {
+            Log.d("Lista utenti", message + " end");
+            return message;
+        } else return getListaUtenti2();
 
     }
 
