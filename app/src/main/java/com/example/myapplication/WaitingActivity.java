@@ -47,10 +47,10 @@ public class WaitingActivity extends AppCompatActivity {
             tempoResiduo.setText(timeLeft+ "");
             if(timeLeft==0) {
                 try{Thread.sleep(500);} catch (Exception e){}
-                mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
+               if(CurrentUser.getUserLoggedStatus()==1) mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
                 if(!CurrentUser.getNumeroBettato().equals("-1")) {
-                    if (flagWin) MakeABetActivity.showWinMessage();
-                    else MakeABetActivity.showLostMessage();
+                    if (flagWin && CurrentUser.getUserLoggedStatus()==1) MakeABetActivity.showWinMessage();
+                    else if (CurrentUser.getUserLoggedStatus()==1) MakeABetActivity.showLostMessage();
                 }
 
                 flagWin=false;
