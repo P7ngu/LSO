@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="40sp"
     android:background="#000000"
+    android:clipToPadding="false"
+    android:padding="0sp"
+    android:paddingTop="50sp"
     tools:context=".ui.leaderboard.LeaderboardFragment">
 
     <TextView
@@ -25,7 +29,12 @@
         android:id="@+id/recycler_leaderboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#000000"
+        android:paddingTop="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_notifications"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

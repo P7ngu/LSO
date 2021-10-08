@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Roulette</string>
+    <string name="app_name">EasyRoulette</string>
 
     <string-array name="numbers_array">
         <item>"RED"</item>

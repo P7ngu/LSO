@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#434342">
+    android:background="#000000">
 
     <TextView
         android:id="@+id/textView_nicknameRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.575"
@@ -32,10 +34,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="381dp"
-        android:layout_height="63dp"
+        android:layout_width="397dp"
+        android:layout_height="15dp"
         android:layout_marginTop="96dp"
         android:text="Button"
+        app:backgroundTint="#0E1F7E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
