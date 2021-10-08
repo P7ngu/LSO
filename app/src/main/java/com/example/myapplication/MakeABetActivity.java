@@ -55,7 +55,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-             PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+             if (mContext!=null) PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
              WaitingActivity.showLostMessage();
              HomeActivity.showLostMessage();
             }
@@ -837,11 +837,15 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                   //  Client.inviaScommessa((betSelezionate.get(i)), importoScommesso);
                 //Log.d("Debug 2.0", "Scommessa inviata" + betSelezionate.get(i));
             //}
-                numeroPuntato= betSelezionate.get(0).toString();
-                Client.inviaScommessa(numeroPuntato, importoScommesso);
-                CurrentUser.setNumeroBettato(numeroPuntato);
-                CurrentUser.setImportoScommesso(importoScommesso);
-                startActivity(new Intent(mContext, WaitingActivity.class));
+                try {
+                    numeroPuntato = betSelezionate.get(0).toString();
+                    Client.inviaScommessa(numeroPuntato, importoScommesso);
+                    CurrentUser.setNumeroBettato(numeroPuntato);
+                    CurrentUser.setImportoScommesso(importoScommesso);
+                    startActivity(new Intent(mContext, WaitingActivity.class));
+                } catch (Exception e){
+                    PopupController.mostraPopup("Errore!", "Assicurati di aver selezionato una casella", mContext);
+                }
             }
         });
 
@@ -865,6 +869,11 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
 
     public static void updateLatestNumber(String nuovoNumero){
-    if(latestNumber!=null) latestNumber.setText(nuovoNumero);
+    if(latestNumber!=null) new Handler(Looper.getMainLooper()).post(new Runnable() {
+        @Override
+        public void run() {
+            latestNumber.setText(nuovoNumero);
+        }
+    });
     }
 }
