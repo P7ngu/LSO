@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    app:itemIconTint="@drawable/bottom_navigation_selector"
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
+        android:iconTint="@drawable/bottom_navigation_selector"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:iconTint="@drawable/ic_launcher_foreground"
         android:title="Utenti online" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@android:drawable/btn_star_big_on"
+        android:iconTint="@drawable/bottom_navigation_selector"
         android:title="Classifica" />
 
 </menu>
