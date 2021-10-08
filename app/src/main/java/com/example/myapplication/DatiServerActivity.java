@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ public class DatiServerActivity extends AppCompatActivity {
     Button sendConnectBTN, autoConnectBTN;
     EditText ip1, ip2, ip3, ip4, port;
     Context mContext;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,8 @@ public class DatiServerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dati_server);
 
         mContext=this;
+        prefs = mContext.getSharedPreferences("myPrefsKeys", Context.MODE_PRIVATE);
+
 
         sendConnectBTN=findViewById(R.id.button_connect);
         autoConnectBTN=findViewById(R.id.auto_connect);
@@ -34,8 +39,12 @@ public class DatiServerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Connection connection = new Connection(ipPrestabilito, port.getText().toString());
-                    Connection.setConnectionData(ipPrestabilito, port.getText().toString());
+                    prefs = mContext.getSharedPreferences("myPrefsKeys", Context.MODE_PRIVATE);
+                    final String ip_sp = prefs.getString("ip", "");
+                    final String port_sp = prefs.getString("port", "");
+                    Log.d("Stored Data", ip_sp + port_sp);
+                    Connection connection = new Connection(ip_sp, port_sp);
+                    Connection.setConnectionData(ip_sp, port_sp);
                     connection.execute();
                     CurrentUser.setLastNumber(Client.getLatestNumber()+"");
                     startActivity(new Intent(mContext, RegisterActivity.class));
@@ -60,8 +69,17 @@ public class DatiServerActivity extends AppCompatActivity {
                     Connection.setConnectionData(ip_formattato, port.getText().toString());
                     connection.execute();
                     CurrentUser.setLastNumber(Client.getLatestNumber()+"");
+                    try { //Let's save the data
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("ip", ip_formattato);
+                        editor.putString("port", port.getText().toString());
+                        editor.apply();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
                     startActivity(new Intent(mContext, RegisterActivity.class));
                 } catch (Exception e){
+                    PopupController.mostraPopup("Errore", "Errore connessione server", mContext);
                     e.printStackTrace();
 
                 }
