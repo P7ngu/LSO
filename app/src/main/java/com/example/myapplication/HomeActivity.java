@@ -46,7 +46,10 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("28 settembre", "user pressed logout button from Home");
 
         Client.inviaRichiestaLogout(CurrentUser.getInstance().getUsername());
+        CurrentUser.getInstance().setUsername(null);
+        CurrentUser.setUserLoggedStatus(0);
         CurrentUser.setInstance(null);
+
         mContext.startActivity(new Intent(mContext, LoginActivity.class));
     }
 

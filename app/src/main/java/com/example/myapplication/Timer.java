@@ -37,6 +37,7 @@ public class Timer {
             }else if(currentTime>0 && currentTime<30){
                 currentTime = currentTime-1;
                 //Start waiting activity
+                userLogged=CurrentUser.getUserLoggedStatus();
                 if(userLogged==1 && flag==0) {
                     MakeABetActivity.startWaitingActivity();
                     flag=1;

@@ -90,6 +90,8 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
 
     public static void startWaitingActivity() {
         try {
+            int logStatus = CurrentUser.getUserLoggedStatus();
+            if(logStatus==1)
             mContext.startActivity(new Intent(mContext, WaitingActivity.class));
         } catch (Exception e){
 

@@ -78,7 +78,7 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "timerleft");
-           if( (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
+           if( message !=null && (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
                try{ timeLeft = new Integer(message);
                return timeLeft;
                } catch (Exception e){return getTimerLeft2();}

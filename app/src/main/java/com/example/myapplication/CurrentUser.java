@@ -7,7 +7,7 @@ public class CurrentUser {
     private static Timer timer;
 
     public static void setUserLoggedStatus(int userLoggedStatus) {
-        CurrentUser.userLoggedStatus = userLoggedStatus;
+        CurrentUser.getInstance().userLoggedStatus = userLoggedStatus;
     }
 
     private static int userLoggedStatus;
