@@ -852,6 +852,13 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
             latestNumber = findViewById(R.id.button2_latestnumber);
             String numeroEstratto = CurrentUser.getLastNumber()+"";
             Log.d("29 settembre", numeroEstratto+"< Latest number");
+            latestNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int numeretto = Client.getLatestNumber();
+                    latestNumber.setText(numeretto+"");
+                }
+            });
 
             //latestNumber.setText(numeroEstratto + "");
         try{

@@ -72,12 +72,15 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "timerleft");
-           if( !message.endsWith(",") )
-               try{ timeLeft = new Integer(message);} catch (Exception e){return getTimerLeft2();}
+           if( (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
+               try{ timeLeft = new Integer(message);
+               return timeLeft;
+               } catch (Exception e){return getTimerLeft2();}
         } catch (IOException e) {
             e.printStackTrace();
+            return getTimerLeft2();
         }
-        return timeLeft;
+        return getTimerLeft2();
     }
 
     public static int getTimerLeft2(){
@@ -86,12 +89,18 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "timerleft");
-            if( !message.endsWith(",") )
-                try{ timeLeft = new Integer(message);} catch (Exception e){return getTimerLeft2();}
+            if( (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
+                try{
+                    timeLeft = new Integer(message);
+                    return timeLeft;
+                } catch (Exception e){
+                    e.printStackTrace();
+                    return getTimerLeft2();}
         } catch (IOException e) {
             e.printStackTrace();
+            return getTimerLeft2();
         }
-        return timeLeft;
+        return getTimerLeft2();
     }
 
     public static String getUtentiAttivi(){
@@ -106,30 +115,26 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if( !message.contains(";") &&
-        !message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
-                && message!=null && !message.equals("") && !message.equals(" ")
-                && !message.equals("1") && !message.equals("2") && !message.equals("3") && !message.equals("4") && !message.equals("5")
-                && !message.equals("6") && !message.equals("7") && !message.equals("8") && !message.equals("9") && !message.equals("10")
-                && !message.equals("11") && !message.equals("12") && !message.equals("13") && !message.equals("14") && !message.equals("15")
-                && !message.equals("16") && !message.equals("17") && !message.equals("18") && !message.equals("19") && !message.equals("20")
-                && !message.equals("21") && !message.equals("22") && !message.equals("23") && !message.equals("24") && !message.equals("25")
-                && !message.equals("26") && !message.equals("27") && !message.equals("28") && !message.equals("29") && !message.equals("30")
-                && !message.equals("31") && !message.equals("32") && !message.equals("33") && !message.equals("34") && !message.equals("35") && !message.equals("36")
-                && !message.equals(1) && !message.equals(2) && !message.equals(3) && !message.equals(4) && !message.equals(5)
-                && !message.equals(6) && !message.equals(7) && !message.equals(8) && !message.equals(9) && !message.equals(10)
-                && !message.equals(11) && !message.equals(12) && !message.equals(13) && !message.equals(14) && !message.equals(15)
-                && !message.equals(16) && !message.equals(17) && !message.equals(18) && !message.equals(19) && !message.equals(20)
-                && !message.equals(21) && !message.equals(22) && !message.equals(23) && !message.equals(24) && !message.equals(25)
-                && !message.equals(26) && !message.equals(27) && !message.equals(28) && !message.equals(29) && !message.equals(30)
-                && !message.equals(31) && !message.equals(32) && !message.equals(33) && !message.equals(34) && !message.equals(35) && !message.equals(36)
-        ) {
+        if( !message.contains(";") && message.contains(",") ) {
             Log.d("Utenti Online", message + " end");
             return message;
         }
-        return "not received";
+        return getUtentiAttivi2();
+    }
 
-
+    public static String getUtentiAttivi2(){
+        String message = null;
+        try {
+            message = Connection.receiveMessageFromServer();
+            Log.d("15 settembre", "utenti attivi2");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if( !message.contains(";") && message.contains(",") ) {
+            Log.d("Utenti Online", message + " end");
+            return message;
+        }
+        return getUtentiAttivi2();
     }
 
     public static int extractLatestNumber() {
@@ -161,9 +166,10 @@ public class Client {
                     MakeABetActivity.showWinMessage();
                     Log.d("15 settembre", "Vittoria");
                 } else {
-                    if(CurrentUser.getNumeroBettato()!=null && !CurrentUser.getNumeroBettato().equals("-1")) {
+                    if(CurrentUser.getNumeroBettato()!=null && !CurrentUser.getNumeroBettato().equals("-1") && !CurrentUser.getNumeroBettato().contains("-")
+                    && !CurrentUser.getNumeroBettato().equals("null")) {
                         MakeABetActivity.showLostMessage();
-                        Log.d("15 settembre", "Sconfitta, bettato: " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
+                        Log.d("8 ottobre", "Sconfitta, bettato: " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
                     } else Log.d("16 settembre", "Nessun numero bettato  " + CurrentUser.getNumeroBettato() + " Uscito: " + message);
                 }
 
