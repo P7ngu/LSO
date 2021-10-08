@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class DatiServerActivity extends AppCompatActivity {
+public class InserimentoDatiServerActivity extends AppCompatActivity {
     Button sendConnectBTN, autoConnectBTN;
     EditText ip1, ip2, ip3, ip4, port;
     Context mContext;

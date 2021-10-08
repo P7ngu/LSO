@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".DatiServerActivity"></activity>
+        <activity android:name=".InserimentoDatiServerActivity"></activity>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />

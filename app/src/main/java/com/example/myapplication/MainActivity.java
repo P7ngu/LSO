@@ -5,11 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.View;
 import android.widget.TextView;
-
-import static com.example.myapplication.Client.getTimerLeft;
-import static com.example.myapplication.CurrentUser.*;
 
 public class MainActivity extends AppCompatActivity {
     static TextView testTextView;
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
        // Connection connection = new Connection(testTextView);
         //connection.execute();
         //startActivity(new Intent(this, RegisterActivity.class));
-        startActivity(new Intent(this, DatiServerActivity.class));
+        startActivity(new Intent(this, InserimentoDatiServerActivity.class));
 
 
         //CurrentUser.setTimer(new Timer(CurrentUser.getStartTime()));
