@@ -48,6 +48,17 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(mContext, HomeActivity.class));
                     CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
                     CurrentUser.getInstance().setUserLoggedStatus(1);
+
+                    //Carico lista e prelevo dati relativi al nick loggato
+                    String users = Client.getListaUtenti();
+                    String[] utentiArray = users.split(";;");
+                    if (utentiArray != null && utentiArray.length >= 2) {
+                        for (int i = 0; i < utentiArray.length; i = i + 2) {
+                            if (utentiArray[i].compareTo(nicknameET.getText().toString()) == 0) {
+                                CurrentUser.getInstance().setMoneyCount(utentiArray[i + 1]);
+                            }
+                        }
+                    }
                 }
                     else {
                     if(nicknameET.getText().length()==0 || pwET.getText().length()==0) PopupController.mostraPopup("Errore durante il login", "Compila tutti i campi!", mContext);

@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethod;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,7 +45,11 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+                Integer prevMoney=Integer.parseInt(CurrentUser.getMoneyCount());
+                Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso()) *30;
+                Client.getMoneyCountForCurrentUser();
+                PopupController.mostraPopup("Complimenti!", "Hai vinto ben "+cash+" gettoni! Ora ne hai "+CurrentUser.getMoneyCount(), mContext);
+
                 WaitingActivity.showWinMessage();
                 HomeActivity.showWinMessage();
             }
@@ -55,7 +60,11 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-             if (mContext!=null) PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+                Integer prevMoney=Integer.parseInt(CurrentUser.getMoneyCount());
+                Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso());
+                Client.getMoneyCountForCurrentUser();
+             if (mContext!=null) PopupController.mostraPopup("Mi dispiace!", "Hai perso: "+CurrentUser.getImportoScommesso()+" gettoni! :( Ora ne hai "+
+                     CurrentUser.getMoneyCount(), mContext);
              WaitingActivity.showLostMessage();
              HomeActivity.showLostMessage();
             }
@@ -841,11 +850,17 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
             //}
                 try {
                     numeroPuntato = betSelezionate.get(0).toString();
-                    Client.inviaScommessa(numeroPuntato, importoScommesso);
-                    CurrentUser.setNumeroBettato(numeroPuntato);
-                    CurrentUser.setImportoScommesso(importoScommesso);
-                    startActivity(new Intent(mContext, WaitingActivity.class));
+                    Integer prevMoney= Integer.parseInt(CurrentUser.getMoneyCount());
+                    Integer intBetMoney=Integer.parseInt(importoScommesso);
+                    if( prevMoney >= intBetMoney) {
+                        Client.inviaScommessa(numeroPuntato, importoScommesso);
+                        CurrentUser.setNumeroBettato(numeroPuntato);
+                        CurrentUser.setImportoScommesso(importoScommesso);
+                        Client.getMoneyCountForCurrentUser();
+                        startActivity(new Intent(mContext, WaitingActivity.class));
+                    } else PopupController.mostraPopup("Errore!", "Non possiedi abbastanza gettoni!", mContext);
                 } catch (Exception e){
+                    e.printStackTrace();
                     PopupController.mostraPopup("Errore!", "Assicurati di aver selezionato una casella", mContext);
                 }
             }
