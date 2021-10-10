@@ -1,10 +1,12 @@
 package com.example.myapplication;
+    import android.app.Activity;
     import android.content.Context;
     import android.os.AsyncTask;
     import android.os.Handler;
     import android.os.Looper;
     import android.util.Log;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import org.w3c.dom.Text;
 
@@ -124,6 +126,8 @@ package com.example.myapplication;
                 sock.connect(new InetSocketAddress(ipDaConnettere, portDaConnettere), 15000);
             } catch (IOException e) {
                 e.printStackTrace();
+                Context contextApp = GlobalApplication.getAppContext();
+                Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
             }
             //mMessageListener.onConnectionEstablished();
 

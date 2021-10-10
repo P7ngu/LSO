@@ -1,13 +1,17 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Client {
+    static Context contextApp;
 
     public static boolean inviaRichiestaRegistrazione(String nome, String password) {
+        contextApp = GlobalApplication.getAppContext();
         PrintWriter pwrite = Connection.getPwrite();
         String blankspaces = " ";
         for (int i = nome.length(); i < 10; i++) {
@@ -29,6 +33,7 @@ public class Client {
     }
 
     public static boolean inviaRichiestaLogin(String nome, String password) {
+        contextApp = GlobalApplication.getAppContext();
         PrintWriter pwrite = Connection.getPwrite();
         String blankspaces = " ";
         for (int i = nome.length(); i < 10; i++) {
@@ -44,7 +49,12 @@ public class Client {
             while (!message.equals("login_success") && !message.equals("login_fail"))
                 message = Connection.receiveMessageFromServer();
         } catch (IOException e) {
+            Context contextApp = GlobalApplication.getAppContext();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
             e.printStackTrace();
+        } catch (Exception e){
+            Context contextApp = GlobalApplication.getAppContext();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
         }
         Log.d("DEBUGGG", message + "Messaggio ricevuto");
         if (message.equals("login_success")) return true;
@@ -53,6 +63,7 @@ public class Client {
     }
 
     public static void inviaScommessa(String numeroPuntato, String importoScommesso) {
+        contextApp = GlobalApplication.getAppContext();
         PrintWriter pwrite = Connection.getPwrite();
         String numeroDaMandare = null;
         String nomeUtente = CurrentUser.getUsername();
@@ -69,6 +80,7 @@ public class Client {
     }
 
     public static int getTimerLeft() {
+        contextApp = GlobalApplication.getAppContext();
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("timeleft");// sending to server
         pwrite.flush();                    // flush the data
@@ -93,6 +105,7 @@ public class Client {
     }
 
     public static int getTimerLeft2() {
+        contextApp = GlobalApplication.getAppContext();
         Integer timeLeft = 21298129;
         String message = null;
         try {
@@ -114,6 +127,7 @@ public class Client {
     }
 
     public static String getUtentiAttivi() {
+        contextApp = GlobalApplication.getAppContext();
         PrintWriter pwrite = Connection.getPwrite();
         pwrite.println("online");// sending to server
         pwrite.flush();                    // flush the data

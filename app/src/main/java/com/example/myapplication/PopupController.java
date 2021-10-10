@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 
 public class PopupController {
@@ -21,6 +22,8 @@ public class PopupController {
 
             alertDialog.show();
         } catch (Exception e) {
+            Context contextApp=GlobalApplication.getAppContext();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
