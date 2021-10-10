@@ -23,7 +23,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 public class MakeABetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner importoSpinner, numeroSpinner;
+    Spinner importoSpinner;
     Button sendBetButton;
     String numeroPuntato, importoScommesso;
     static Context mContext;
@@ -115,17 +115,16 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         Spinner spinner = (Spinner) findViewById(R.id.importo_spinner);
         Log.d("Debuggg", (String) parent.getItemAtPosition(pos));
         Spinner spin = (Spinner)parent;
-        Spinner spin2 = (Spinner)parent;
 
-        if(spin.getId() == R.id.importo_spinner)
-        {
-            importoScommesso=parent.getItemAtPosition(pos)+"";
-        }
+
+            importoScommesso = spinner.getItemAtPosition(pos)+"";
+
 
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
             // Another interface callback
+            Log.d("10 ottobre", "on nothing selected");
         }
 
 public void rimuoviChecks(CheckBox checkDaLasciare){
@@ -135,6 +134,8 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
 
     checkBoxesCliccate.add(checkDaLasciare);
 }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -148,9 +149,22 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.importi_array, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         importoSpinner.setAdapter(adapter1);
 
-        importoSpinner.setOnItemSelectedListener(this);
+        importoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                importoScommesso = importoSpinner.getItemAtPosition(position)+"";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         CheckBox cPari = findViewById(R.id.cB_pari);
         cPari.setBackgroundColor(Color.BLACK);
