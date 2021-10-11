@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -77,6 +79,8 @@ public class Client {
         Log.d("Debug puntata", numeroDaMandare + nomeUtente);
         pwrite.println("puntata   " + numeroDaMandare + nomeUtente + blankspaces + importoScommesso);// sending to server
         pwrite.flush();                    // flush the data
+
+        Log.d("11 ottobre", "puntata mandata");
 
     }
 
@@ -185,7 +189,7 @@ public class Client {
             if (message.contains("**")) {
                 Log.d("15 settembre", "Contiene**");
                 //E' il numero estratto
-                String numberString = message.replace("**", "");
+                final String numberString = message.replace("**", "");
                 number = Integer.parseInt(numberString);
 
                 if (CurrentUser.getInstance() != null && CurrentUser.getNumeroBettato() != null && checkForWin(number)) {
@@ -201,9 +205,18 @@ public class Client {
                 }
 
                 CurrentUser.setLastNumber(numberString);
-                MakeABetActivity.updateLatestNumber(numberString);
+
+
                 try {
-                    MakeABetActivity.latestNumber.setText(message);
+                    //looper
+                    //new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        //@Override
+                        //public void run() {
+                            MakeABetActivity.updateLatestNumber(numberString);
+                            MakeABetActivity.latestNumber.setText(numberString);
+                      //  }
+                    //});
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -1,25 +1,25 @@
 package com.example.myapplication;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethod;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MakeABetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -45,6 +45,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
+                Log.d("11 ott", "new looper win message in makeabet");
                 Integer prevMoney=Integer.parseInt(CurrentUser.getMoneyCount());
                 Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso()) *30;
                 Client.getMoneyCountForCurrentUser();
@@ -60,6 +61,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
+                Log.d("11 ott", "new looper showlostmessg in makeabet");
                 Integer prevMoney=Integer.parseInt(CurrentUser.getMoneyCount());
                 Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso());
                 Client.getMoneyCountForCurrentUser();
@@ -858,30 +860,17 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         sendBetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Da riaggiornare
-                //for (int i = 0; i < betSelezionate.size(); i++){
-                  //  Client.inviaScommessa((betSelezionate.get(i)), importoScommesso);
-                //Log.d("Debug 2.0", "Scommessa inviata" + betSelezionate.get(i));
-            //}
-                try {
-                    numeroPuntato = betSelezionate.get(0).toString();
-                    Integer prevMoney= Integer.parseInt(CurrentUser.getMoneyCount());
-                    Integer intBetMoney=Integer.parseInt(importoScommesso);
-                    if( prevMoney >= intBetMoney) {
-                        Client.inviaScommessa(numeroPuntato, importoScommesso);
-                        Log.d("11 ottobre", "c'è abbastanza cash");
-
-                        CurrentUser.getInstance().setNumeroBettato(numeroPuntato);
-                        CurrentUser.getInstance().setImportoScommesso(importoScommesso);
-                        Client.getMoneyCountForCurrentUser();
-                        startActivity(new Intent(mContext, WaitingActivity.class));
-                    } else PopupController.mostraPopup("Errore!", "Non possiedi abbastanza gettoni!", mContext);
-                } catch (Exception e){
-                    e.printStackTrace();
-                    PopupController.mostraPopup("Errore!", "Assicurati di aver selezionato una casella", mContext);
-                }
+                MyAsyncTask m = new MyAsyncTask(numeroPuntato, importoScommesso, betSelezionate, mContext);
+                m.execute();
             }
         });
+
+
+
+
+
+
+
 
             latestNumber = findViewById(R.id.button2_latestnumber);
             String numeroEstratto = CurrentUser.getLastNumber()+"";
@@ -915,7 +904,51 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         @Override
         public void run() {
             latestNumber.setText(nuovoNumero);
+            Log.d("11 ott", "new looper updatelatestnumber");
         }
     });
     }
+}
+
+class MyAsyncTask extends AsyncTask<String, String, String> {
+    Context mContext;
+    String importoScommesso;
+    String numeroPuntato;
+    ArrayList<String> betSelezionate;
+
+    public MyAsyncTask(String numeroPuntato1, String importoScommesso1, ArrayList<String> betSelezionate1, Context mContext1){
+        mContext=mContext1;
+        importoScommesso=importoScommesso1;
+        numeroPuntato=numeroPuntato1;
+        betSelezionate=betSelezionate1;
+        Log.d("11 ott", "chiamato asynctask dopo click su bet");
+    }
+
+    @Override
+    protected String doInBackground(String... strings) {
+        return null;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        try {
+            numeroPuntato = betSelezionate.get(0).toString();
+            Integer prevMoney= Integer.parseInt(CurrentUser.getMoneyCount());
+            Integer intBetMoney=Integer.parseInt(importoScommesso);
+            if( prevMoney >= intBetMoney) {
+                Client.inviaScommessa(numeroPuntato, importoScommesso);
+                Log.d("11 ottobre", "c'è abbastanza cash");
+
+                CurrentUser.getInstance().setNumeroBettato(numeroPuntato);
+                CurrentUser.getInstance().setImportoScommesso(importoScommesso);
+                Client.getMoneyCountForCurrentUser();
+                mContext.startActivity(new Intent(mContext, WaitingActivity.class));
+            } else PopupController.mostraPopup("Errore!", "Non possiedi abbastanza gettoni!", mContext);
+        } catch (Exception e){
+            e.printStackTrace();
+            PopupController.mostraPopup("Errore!", "Assicurati di aver selezionato una casella", mContext);
+        }
+    }
+
+
 }

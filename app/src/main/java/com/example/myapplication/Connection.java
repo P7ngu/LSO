@@ -179,12 +179,7 @@ package com.example.myapplication;
                         //MainActivity.setText_Testing(messages);
                                             final String mx=messages;
 
-                                        new Handler(Looper.getMainLooper()).post(new Runnable(){
-                                            @Override
-                                         public void run() {
-                                            test.setText(mx.toString());
-                                      }
-                                });
+
 
                         //receiveMessage = receiveMessage.substring(0,0);
                               Log.d("TEST", "fine thread \n");

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 
@@ -44,20 +46,46 @@ public class WaitingActivity extends AppCompatActivity {
 
     }
 
-    public static void setTimeLeft(int timeLeft){
+    public static void setTimeLeft(int timeLeft) {
         //To do add looper
-            tempoResiduo.setText(timeLeft+ "");
-            if(timeLeft==0) {
-                try{Thread.sleep(500);} catch (Exception e){e.printStackTrace();}
-               if(CurrentUser.getUserLoggedStatus()==1) mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
-                if(!CurrentUser.getNumeroBettato().equals("-1")) {
-                    if (flagWin && CurrentUser.getUserLoggedStatus()==1) MakeABetActivity.showWinMessage();
-                    else if (CurrentUser.getUserLoggedStatus()==1) MakeABetActivity.showLostMessage();
-                }
+        try {
 
-                flagWin=false;
-                Log.d("11 ott", "set time left ended");
-            }
+           // new Handler(Looper.getMainLooper()).post(new Runnable() {
+             //   @Override
+               // public void run() {
+                    try {
+                        Log.d("11 ott", "new looper setitimeleft waitingactv");
+                       if(tempoResiduo!=null) tempoResiduo.setText(timeLeft + "");
+                        if (timeLeft == 0) {
+                            try {
+                                Thread.sleep(500);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            if (CurrentUser.getUserLoggedStatus() == 1)
+                                mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
+                            if (!CurrentUser.getNumeroBettato().equals("-1")) {
+                                if (flagWin && CurrentUser.getUserLoggedStatus() == 1)
+                                    MakeABetActivity.showWinMessage();
+                                else if (CurrentUser.getUserLoggedStatus() == 1)
+                                    MakeABetActivity.showLostMessage();
+                            }
+
+
+                            flagWin = false;
+                            Log.d("11 ott", "set time left ended");
+
+                        }
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+              //  }
+            //});
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
