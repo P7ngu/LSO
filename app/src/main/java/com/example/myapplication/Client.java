@@ -55,6 +55,7 @@ public class Client {
         } catch (Exception e){
             Context contextApp = GlobalApplication.getAppContext();
             Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
         Log.d("DEBUGGG", message + "Messaggio ricevuto");
         if (message.equals("login_success")) return true;
@@ -204,6 +205,7 @@ public class Client {
                 try {
                     MakeABetActivity.latestNumber.setText(message);
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else return extractLatestNumber2();
         }
@@ -244,6 +246,7 @@ public class Client {
                 try {
                     MakeABetActivity.latestNumber.setText(message);
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else return extractLatestNumber2();
         }
@@ -327,11 +330,12 @@ public class Client {
                 if (CurrentUser.getLastNumber() == null || CurrentUser.getLastNumber() == "") try {
                     MakeABetActivity.latestNumber.setText(message);
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 return number;
             } catch (Exception e) {
-
+            e.printStackTrace();
             }
         else return getLatestNumber2();
         return number;
@@ -357,9 +361,11 @@ public class Client {
                 if (CurrentUser.getLastNumber() == null || CurrentUser.getLastNumber() == "") try {
                     MakeABetActivity.latestNumber.setText(message);
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 return number;
             } catch (Exception e) {
+                e.printStackTrace();
 
             }
         else return getLatestNumber2();

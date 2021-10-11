@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Context contextApp = GlobalApplication.getAppContext();
                     Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
             }
         });

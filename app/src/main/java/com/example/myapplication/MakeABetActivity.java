@@ -103,6 +103,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
             if(logStatus==1)
             mContext.startActivity(new Intent(mContext, WaitingActivity.class));
         } catch (Exception e){
+            e.printStackTrace();
 
         }
     }
@@ -897,6 +898,7 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
         try{
             latestNumber.setText("Show");
         } catch (Exception e){
+            e.printStackTrace();
             Client.getLatestNumber();
         }
 

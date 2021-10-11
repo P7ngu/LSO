@@ -45,9 +45,10 @@ public class WaitingActivity extends AppCompatActivity {
     }
 
     public static void setTimeLeft(int timeLeft){
+        //To do add looper
             tempoResiduo.setText(timeLeft+ "");
             if(timeLeft==0) {
-                try{Thread.sleep(500);} catch (Exception e){}
+                try{Thread.sleep(500);} catch (Exception e){e.printStackTrace();}
                if(CurrentUser.getUserLoggedStatus()==1) mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
                 if(!CurrentUser.getNumeroBettato().equals("-1")) {
                     if (flagWin && CurrentUser.getUserLoggedStatus()==1) MakeABetActivity.showWinMessage();

@@ -52,6 +52,7 @@ public class Timer {
                 try {
                     //Thread.sleep(2000);
                 }catch (Exception e){
+                    e.printStackTrace();
 
                 }
                 //Verifichiamo la puntata
@@ -67,6 +68,7 @@ public class Timer {
                     }
 
                 }catch (Exception e){
+                    e.printStackTrace();
 
                 }
                 finally {
@@ -79,7 +81,7 @@ public class Timer {
             try{
                 WaitingActivity.setTimeLeft(currentTime);
             } catch (Exception e){
-
+                e.printStackTrace();
             }
 
             try {
@@ -87,7 +89,7 @@ public class Timer {
                 thread.sleep(1000);
 
             } catch (Exception e){
-
+                e.printStackTrace();
             }
 
         } while(true);
