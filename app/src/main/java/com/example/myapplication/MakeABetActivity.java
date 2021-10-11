@@ -46,8 +46,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                AsyncTask moneyAT = new Client.updateMoneyCount();
-                moneyAT.execute();
+                new Client.updateMoneyCount().execute();
 
                 handler.post(new Runnable() {
                     @Override
@@ -72,8 +71,8 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                AsyncTask moneyAT = new Client.updateMoneyCount();
-                moneyAT.execute();
+                new Client.updateMoneyCount().execute();
+
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
