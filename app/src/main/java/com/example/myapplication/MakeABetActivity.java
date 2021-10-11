@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
     static Button latestNumber;
     ArrayList<String> betSelezionate = new ArrayList<>();
     ArrayList<CheckBox> checkBoxesCliccate = new ArrayList<>();
+    public static Handler handler = new Handler();
 
     @Override
     public void onBackPressed() {
@@ -44,7 +46,22 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                PopupController.mostraPopup("Complimenti!", "Hai vinto!", mContext);
+                AsyncTask moneyAT = new Client.updateMoneyCount();
+                moneyAT.execute();
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Client.getMoneyCountForCurrentUser();
+                    }
+                });
+
+                Log.d("11 ott", "win win");
+                Integer newMoney=Integer.parseInt(CurrentUser.getMoneyCount());
+                Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso()) *30;
+
+
+                PopupController.mostraPopup("Complimenti!", "Hai vinto "+cash+"! E ora hai: "+newMoney, mContext);
                 WaitingActivity.showWinMessage();
                 HomeActivity.showWinMessage();
             }
@@ -55,7 +72,18 @@ public class MakeABetActivity extends AppCompatActivity implements AdapterView.O
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (mContext!=null) PopupController.mostraPopup("Mi dispiace!", "Hai perso!", mContext);
+                AsyncTask moneyAT = new Client.updateMoneyCount();
+                moneyAT.execute();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Client.getMoneyCountForCurrentUser();
+                    }
+                });
+                Log.d("11 ott", "Loss loss");
+                Integer newMoney=Integer.parseInt(CurrentUser.getMoneyCount());
+                Integer cash=Integer.parseInt(CurrentUser.getImportoScommesso());
+                if (mContext!=null) PopupController.mostraPopup("Mi dispiace!", "Hai perso "+cash+" ed ora hai "+newMoney, mContext);
                 WaitingActivity.showLostMessage();
                 HomeActivity.showLostMessage();
             }

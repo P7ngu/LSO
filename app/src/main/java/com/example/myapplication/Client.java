@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.IOException;
@@ -403,4 +404,37 @@ public class Client {
         }
 
     }
+
+    public static void getMoneyCountForCurrentUser() {
+        String users = Client.getListaUtenti();
+        String[] utentiArray = users.split(";;");
+        if (utentiArray != null && utentiArray.length >= 2) {
+            for (int i = 0; i < utentiArray.length; i = i + 2) {
+                if (utentiArray[i].compareTo(CurrentUser.getUsername()) == 0) {
+                    CurrentUser.getInstance().setMoneyCount(utentiArray[i + 1]);
+                    Log.d("11 ott", "money count updated");
+                }
+            }
+
+        }
+    }
+
+
+    public static class updateMoneyCount extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            Log.d("11 ott", "In pre ex moneycount");
+            getMoneyCountForCurrentUser();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d("11 ott", "In BG moneycount");
+            //getMoneyCountForCurrentUser();
+
+            return null;
+        }
+    }
+
 }

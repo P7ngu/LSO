@@ -49,10 +49,9 @@ public class WaitingActivity extends AppCompatActivity {
     public static void setTimeLeft(int timeLeft) {
         //To do add looper
         try {
-
-           // new Handler(Looper.getMainLooper()).post(new Runnable() {
-             //   @Override
-               // public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+               @Override
+                public void run() {
                     try {
                         Log.d("11 ott", "new looper setitimeleft waitingactv");
                        if(tempoResiduo!=null) tempoResiduo.setText(timeLeft + "");
@@ -79,8 +78,8 @@ public class WaitingActivity extends AppCompatActivity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-              //  }
-            //});
+                }
+            });
 
 
         } catch (Exception e) {
