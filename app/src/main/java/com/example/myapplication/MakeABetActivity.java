@@ -868,8 +868,10 @@ public void rimuoviChecks(CheckBox checkDaLasciare){
                     Integer intBetMoney=Integer.parseInt(importoScommesso);
                     if( prevMoney >= intBetMoney) {
                         Client.inviaScommessa(numeroPuntato, importoScommesso);
-                        CurrentUser.setNumeroBettato(numeroPuntato);
-                        CurrentUser.setImportoScommesso(importoScommesso);
+                        Log.d("11 ottobre", "c'è abbastanza cash");
+
+                        CurrentUser.getInstance().setNumeroBettato(numeroPuntato);
+                        CurrentUser.getInstance().setImportoScommesso(importoScommesso);
                         Client.getMoneyCountForCurrentUser();
                         startActivity(new Intent(mContext, WaitingActivity.class));
                     } else PopupController.mostraPopup("Errore!", "Non possiedi abbastanza gettoni!", mContext);

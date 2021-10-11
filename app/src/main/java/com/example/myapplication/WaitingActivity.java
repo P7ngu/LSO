@@ -35,6 +35,7 @@ public class WaitingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext=this;
+        Log.d("11 ott", "waiting oncreate");
         setContentView(R.layout.activity_waiting);
 
         tempoResiduo=findViewById(R.id.button_temporesiduo_waitingactivity);
@@ -54,6 +55,7 @@ public class WaitingActivity extends AppCompatActivity {
                 }
 
                 flagWin=false;
+                Log.d("11 ott", "set time left ended");
             }
 
     }

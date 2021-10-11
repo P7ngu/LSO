@@ -95,6 +95,7 @@ public class Client {
                     timeLeft = new Integer(message);
                     return timeLeft;
                 } catch (Exception e) {
+                    e.printStackTrace();
                     return getTimerLeft2();
                 }
         } catch (IOException e) {
