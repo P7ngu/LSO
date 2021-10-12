@@ -42,12 +42,20 @@ public class InserimentoDatiServerActivity extends AppCompatActivity {
                     prefs = mContext.getSharedPreferences("myPrefsKeys", Context.MODE_PRIVATE);
                     final String ip_sp = prefs.getString("ip", "");
                     final String port_sp = prefs.getString("port", "");
-                    Log.d("Stored Data", ip_sp + port_sp);
+                    final String nome=prefs.getString("nome", "");
+                    final String password=prefs.getString("password", "");
+                    Log.d("Stored Data", ip_sp + port_sp+ " dati utente: "+nome
+                    +" "+password);
                     Connection connection = new Connection(ip_sp, port_sp);
                     Connection.setConnectionData(ip_sp, port_sp);
                     connection.execute();
                     CurrentUser.setLastNumber(Client.getLatestNumber()+"");
-                    startActivity(new Intent(mContext, RegisterActivity.class));
+                    if(Client.inviaRichiestaLogin(nome, password)) {
+                        startActivity(new Intent(mContext, HomeActivity.class));
+                        CurrentUser.getInstance().setUsername(nome);
+                        CurrentUser.getInstance().setUserLoggedStatus(1);
+                    }
+                    else startActivity(new Intent(mContext, RegisterActivity.class));
                 } catch (Exception e){
                     PopupController.mostraPopup("Errore", "Errore connessione server", mContext);
                     e.printStackTrace();

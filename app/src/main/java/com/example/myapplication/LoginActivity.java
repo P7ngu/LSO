@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
     EditText nicknameET, pwET;
     Button registratiNowButton, loginSendButton;
+    SharedPreferences prefs;
     Context mContext;
 
     @Override
@@ -27,7 +29,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         mContext=this;
+        prefs = mContext.getSharedPreferences("myPrefsKeys", Context.MODE_PRIVATE);
 
         nicknameET=findViewById(R.id.editTextTextPersonName_nicknamelogin);
         pwET=findViewById(R.id.editTextTextPassword_password_login);
@@ -45,9 +50,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Client.inviaRichiestaLogin(nicknameET.getText().toString(), pwET.getText().toString())) {
+                    prefs = mContext.getSharedPreferences("myPrefsKeys", Context.MODE_PRIVATE);
                     startActivity(new Intent(mContext, HomeActivity.class));
                     CurrentUser.getInstance().setUsername(nicknameET.getText().toString());
                     CurrentUser.getInstance().setUserLoggedStatus(1);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("nome", nicknameET.getText().toString());
+                    editor.putString("password", pwET.getText().toString());
+                    editor.apply();
                 }
                 else {
                     if(nicknameET.getText().length()==0 || pwET.getText().length()==0) PopupController.mostraPopup("Errore durante il login", "Compila tutti i campi!", mContext);

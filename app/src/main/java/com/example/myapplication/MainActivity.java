@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //connection.execute();
         //startActivity(new Intent(this, RegisterActivity.class));
         startActivity(new Intent(this, InserimentoDatiServerActivity.class));
+        startService(new Intent(getBaseContext(), ClearService.class));
 
 
         //CurrentUser.setTimer(new Timer(CurrentUser.getStartTime()));
