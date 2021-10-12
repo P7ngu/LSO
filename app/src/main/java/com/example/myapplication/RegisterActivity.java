@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     if(pw1.length()>5 && pw2.length()>5 && !pw2.equals(pw1)) PopupController.mostraPopup("Errore", "Le password devono coincidere!", mContext);
-                    else if (pw1.length()<5 || pw2.length()<5 || nome.length()<3) PopupController.mostraPopup("Compila tutti i campi!", "Devi compilare tutti i campi!", mContext);
+                    else if (pw1.isEmpty() || pw2.isEmpty() || nome.isEmpty()) PopupController.mostraPopup("Compila tutti i campi!", "Devi compilare tutti i campi!", mContext);
                     else if( (pw2.length() < 6 || pw2.length() > 10) ) PopupController.mostraPopup("Errore password", "La password deve contenere più di 5 e meno di 10 caratteri", mContext);
                     else if(nome.length() < 3 && nome.length() > 10) PopupController.mostraPopup("Errore nickname", "Il nickname deve contenere almeno 3 e meno di 10 caratteri", mContext);
 
