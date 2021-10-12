@@ -60,7 +60,7 @@ public class WaitingActivity extends AppCompatActivity {
                 public void run() {
                     if(yourBet!=null){
                         if(numero!=null && importo!=null){
-                            yourBet.setText("Hai puntato "+importo+" gettoni, su "+numero);
+                            yourBet.setText("Hai puntato "+importo+" gettoni, su "+numero+". Attendi...");
                         }else{
                             //yourBet.setText("Nessuna scommessa");
                         }
@@ -91,7 +91,7 @@ public class WaitingActivity extends AppCompatActivity {
                             }
                             if (CurrentUser.getUserLoggedStatus() == 1)
                                 mContext.startActivity(new Intent(mContext, MakeABetActivity.class));
-                            if (!CurrentUser.getNumeroBettato().equals("-1")) {
+                            if (CurrentUser.getNumeroBettato()!=null && !CurrentUser.getNumeroBettato().equals("-1")) {
                                 if (flagWin && CurrentUser.getUserLoggedStatus() == 1)
                                     MakeABetActivity.showWinMessage();
                                 else if (CurrentUser.getUserLoggedStatus() == 1)

@@ -230,6 +230,10 @@ package com.example.myapplication;
                 });
                 Log.d("TEST", "fine metodo invocato \n");
             }
+            if ( messages==null) {
+                Context contextApp = GlobalApplication.getAppContext();
+                Toast.makeText(contextApp, "Errore di connessione, ricevuto null ", Toast.LENGTH_SHORT).show();
+            }
             return messages;
         }
 

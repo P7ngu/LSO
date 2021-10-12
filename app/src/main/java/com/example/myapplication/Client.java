@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -88,7 +89,11 @@ public class Client {
             if( message !=null && (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
                 try{ timeLeft = new Integer(message);
                     return timeLeft;
-                } catch (Exception e){return getTimerLeft2();}
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Context contextApp = GlobalApplication.getAppContext();
+                    Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
+                    return getTimerLeft2();}
         } catch (IOException e) {
             e.printStackTrace();
             Context contextApp = GlobalApplication.getAppContext();
@@ -104,14 +109,12 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "timerleft");
-            if( (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) )
-                try{
-                    timeLeft = new Integer(message);
-                    return timeLeft;
-                } catch (Exception e){
-                    e.printStackTrace();
-                    return getTimerLeft2();}
-        } catch (IOException e) {
+            if( (!message.endsWith(",") && !message.contains(";;") && !message.contains("*") && !message.contains("-")  ) ) {
+                timeLeft = new Integer(message);
+                return timeLeft;
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
             Context contextApp = GlobalApplication.getAppContext();
             Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
@@ -129,16 +132,17 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "utenti attivi");
-        } catch (IOException e) {
+            if( !message.contains(";") && message.contains(",") ) {
+                Log.d("Utenti Online", message + " end");
+                return message;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             Context contextApp = GlobalApplication.getAppContext();
-            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_SHORT).show();
             Log.d("toast", "here");
         }
-        if( !message.contains(";") && message.contains(",") ) {
-            Log.d("Utenti Online", message + " end");
-            return message;
-        }
+
         return getUtentiAttivi2();
     }
 
@@ -147,15 +151,17 @@ public class Client {
         try {
             message = Connection.receiveMessageFromServer();
             Log.d("15 settembre", "utenti attivi2");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if( !message.contains(";") && message.contains(",") ) {
+            if( !message.contains(";") && message.contains(",") ) {
+
+                return message;
+            }
+        } catch (Exception e) {
             Log.d("Utenti Online", message + " end");
             Context contextApp = GlobalApplication.getAppContext();
-            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
-            return message;
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
+
         return getUtentiAttivi2();
     }
 
@@ -174,6 +180,7 @@ public class Client {
         } catch (Exception e) {
             e.printStackTrace();
             Context contextApp = GlobalApplication.getAppContext();
+            Looper.prepare();
             Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
         }
 

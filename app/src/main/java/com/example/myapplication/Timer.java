@@ -84,7 +84,7 @@ public class Timer {
                     Log.d("Debug numero estratto", numeroEstratto+"numero<");
                     //CurrentUser.setLastNumber(numeroEstratto+"");
                     try {
-                        if (CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
+                        if (CurrentUser.getNumeroBettato()!=null && CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
                             int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());
                             int moneyWon = Integer.parseInt(CurrentUser.getImportoScommesso()) * 30;
                             CurrentUser.setMoneyCount(prevMoney + moneyWon + "");
