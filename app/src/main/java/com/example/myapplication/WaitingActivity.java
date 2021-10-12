@@ -59,7 +59,7 @@ public class WaitingActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if(yourBet!=null){
-                        if(numero!=null && importo!=null){
+                        if(numero!=null && !numero.equals("-1") && importo!=null){
                             yourBet.setText("Hai puntato "+importo+" gettoni, su "+numero+". Attendi...");
                         }else{
                             //yourBet.setText("Nessuna scommessa");
