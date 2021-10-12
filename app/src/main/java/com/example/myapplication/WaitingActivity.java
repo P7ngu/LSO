@@ -10,8 +10,10 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 
+import javax.net.ssl.HandshakeCompletedListener;
+
 public class WaitingActivity extends AppCompatActivity {
-    static Button tempoResiduo;
+    static Button tempoResiduo, yourBet;
     static Context mContext;
     static boolean flagWin;
 
@@ -39,10 +41,30 @@ public class WaitingActivity extends AppCompatActivity {
         mContext=this;
         Log.d("11 ott", "waiting oncreate");
         setContentView(R.layout.activity_waiting);
+        yourBet=findViewById(R.id.button_yourbet);
 
         tempoResiduo=findViewById(R.id.button_temporesiduo_waitingactivity);
 
         tempoResiduo.setText("Clicca per visualizzare");
+        String numero = CurrentUser.getNumeroBettato();
+        String importo=CurrentUser.getImportoScommesso();
+
+        setBetData(numero, importo);
+
+    }
+
+    public static void setBetData(String numero, String importo){
+        try{
+            new Handler(Looper.myLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    if(yourBet!=null) yourBet.setText("Hai puntato "+numero+" gettoni, su "+numero);
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
