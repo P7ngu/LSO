@@ -62,7 +62,7 @@ public class WaitingActivity extends AppCompatActivity {
                         if(numero!=null && importo!=null){
                             yourBet.setText("Hai puntato "+importo+" gettoni, su "+numero);
                         }else{
-                            yourBet.setText("Nessuna scommessa");
+                            //yourBet.setText("Nessuna scommessa");
                         }
                     }
                 }
