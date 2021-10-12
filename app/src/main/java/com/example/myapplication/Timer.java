@@ -72,19 +72,22 @@ public class Timer {
                     flag=0;
                     startTime=45;
                     currentTime=45-7;
+                    int numeroEstratto = -1;
                     //Chiediamo al server l'ultimo numero estratto
                     try {
                         //Thread.sleep(2000);
+                        numeroEstratto = Client.extractLatestNumber();
+                        Log.d("Debug numero estratto", numeroEstratto+"numero<");
                     }catch (Exception e){
                         e.printStackTrace();
 
                     }
                     //Verifichiamo la puntata
-                    int numeroEstratto = Client.extractLatestNumber();
-                    Log.d("Debug numero estratto", numeroEstratto+"numero<");
+
+
                     //CurrentUser.setLastNumber(numeroEstratto+"");
                     try {
-                        if (CurrentUser.getNumeroBettato()!=null && CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
+                        if (numeroEstratto!=-1 && CurrentUser.getNumeroBettato()!=null && CurrentUser.getNumeroBettato().equals(numeroEstratto + "")) {
                             int prevMoney = Integer.parseInt(CurrentUser.getMoneyCount());
                             int moneyWon = Integer.parseInt(CurrentUser.getImportoScommesso()) * 30;
                             CurrentUser.setMoneyCount(prevMoney + moneyWon + "");
