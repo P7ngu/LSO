@@ -350,7 +350,7 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if( !message.contains(",") && //Scartiamo gli utenti online
+        if( message !=null && !message.contains(",") && //Scartiamo gli utenti online
                 !message.contains("--") &&
                 !message.equals("register_success") && !message.equals("login_success") && !message.equals("login_fail")
                 && message!=null
@@ -397,7 +397,7 @@ public class Client {
         String message = null;
         try {
             message = Connection.receiveMessageFromServer();
-            if(message.contains("logout"))
+            if(message !=null && message.contains("logout"))
                 Log.d("28 settembre", "logout "+message);
         } catch (IOException e) {
             e.printStackTrace();
