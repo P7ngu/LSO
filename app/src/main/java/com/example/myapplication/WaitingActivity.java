@@ -58,7 +58,14 @@ public class WaitingActivity extends AppCompatActivity {
             new Handler(Looper.myLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    if(yourBet!=null) yourBet.setText("Hai puntato "+numero+" gettoni, su "+numero);
+                    if(yourBet!=null){
+                        if(numero!=null && importo!=null){
+                            yourBet.setText("Hai puntato "+importo+" gettoni, su "+numero);
+                        }else{
+                            yourBet.setText("Nessuna scommessa");
+                        }
+
+                    }
                 }
             });
 
