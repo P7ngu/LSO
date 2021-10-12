@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +26,8 @@ public class Client {
             message = Connection.receiveMessageFromServer();
         } catch (IOException e) {
             e.printStackTrace();
+            Context contextApp = GlobalApplication.getAppContext();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
         }
 
         return true;
@@ -46,6 +50,8 @@ public class Client {
                 message = Connection.receiveMessageFromServer();
         } catch (IOException e) {
             e.printStackTrace();
+            Context contextApp = GlobalApplication.getAppContext();
+            Toast.makeText(contextApp, "Errore di connessione. Riavvia l'app. ", Toast.LENGTH_LONG).show();
         }
         Log.d("DEBUGGG", message+"Messaggio ricevuto");
         if(message.equals("login_success")) return true;

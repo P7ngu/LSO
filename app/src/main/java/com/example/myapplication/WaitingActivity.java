@@ -64,7 +64,6 @@ public class WaitingActivity extends AppCompatActivity {
                         }else{
                             yourBet.setText("Nessuna scommessa");
                         }
-
                     }
                 }
             });
